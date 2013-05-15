@@ -21,12 +21,12 @@ public class CategoriaActivity extends SherlockFragmentActivity{
     	return findViewById(R.id.fragmentDetalheCategorias) != null;
     }
 	
-	private void habilitarSalvar(boolean habilitar) {
-		MenuItem itemSave = menu.findItem(R.id.action_save);
-		if (itemSave != null){
-			itemSave.setVisible(habilitar);
-		}
-	}
+//	private void habilitarSalvar(boolean habilitar) {
+//		MenuItem itemSave = menu.findItem(R.id.action_save);
+//		if (itemSave != null){
+//			itemSave.setVisible(habilitar);
+//		}
+//	}
 	
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -55,9 +55,25 @@ public class CategoriaActivity extends SherlockFragmentActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
     	getSupportMenuInflater().inflate(R.menu.incluirsalvar, menu);
 		this.menu = menu;
-		habilitarSalvar(false);
+		//habilitarSalvar(false);
     	return super.onCreateOptionsMenu(menu);
     }
+    
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    	if (item.getItemId() == R.id.act_NovaCategoria){
+	    	if (mostraDetalhe()){
+				FragmentTransaction trans = fm.beginTransaction();
+				trans.replace(R.id.fragmentDetalheCategorias, DetalheCategoriaFragment.novoDetalhe(new Categoria()), "detalhe");
+				trans.commit();
+			}else{
+				Intent intent = new Intent(context, DetalheCategoriaActivity.class);
+				startActivity(intent);
+			}
+    	}
+    	return super.onMenuItemSelected(featureId, item);
+    }
+    
     
     
 }

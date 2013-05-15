@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     
 <item
-        android:id="@+id/action_new"
+        android:id="@+id/act_NovaCategoria"
         android:showAsAction="always"
         android:title="Novo"/>
     <item
-        android:id="@+id/action_save"
+        android:id="@+id/act_AlterarCategoria"
         android:showAsAction="always"
         android:title="Salvar"/>
 </menu>
