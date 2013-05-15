@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class DetalheCategoriaFragment extends Fragment{
 	public static DetalheCategoriaFragment novoDetalhe(Categoria categoria){
@@ -19,6 +18,12 @@ public class DetalheCategoriaFragment extends Fragment{
 		return detalhe;
 	}
 	
+	public static DetalheCategoriaFragment novoDetalhe(){
+		
+		DetalheCategoriaFragment detalhe = new DetalheCategoriaFragment();
+		return detalhe;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -27,10 +32,8 @@ public class DetalheCategoriaFragment extends Fragment{
 		
 		View layout = inflater.inflate(R.layout.detalhecategoria, null);
 		
-		TextView lblCodigo = (TextView)layout.findViewById(R.id.lblCodigo);
 		EditText edtDescricao = (EditText)layout.findViewById(R.id.edtDescricao);
 		
-		lblCodigo.setText(String.valueOf(categoria.getId()));
 		edtDescricao.setText(categoria.getDescricao());
 		
 		return layout;

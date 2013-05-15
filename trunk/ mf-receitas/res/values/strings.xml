@@ -9,5 +9,6 @@
     <string name="codigo">Código</string>
     <string name="descricao">Descrição</string>
     <string name="salvar">Salvar</string>
+    <string name="nomeCategoria">Nome da Categoria</string>
     
 </resources>
