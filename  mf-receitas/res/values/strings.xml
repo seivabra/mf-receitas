@@ -5,10 +5,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     
+    <string name="alterar">Alterar</string>
     <string name="cancelar">Cancelar</string>
     <string name="codigo">Código</string>
     <string name="descricao">Descrição</string>
-    <string name="salvar">Salvar</string>
     <string name="nomeCategoria">Nome da Categoria</string>
+    <string name="novo">Novo</string>
+     <string name="salvar">Salvar</string>
     
 </resources>

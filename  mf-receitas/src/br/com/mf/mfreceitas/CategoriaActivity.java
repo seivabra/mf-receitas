@@ -10,23 +10,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class CategoriaActivity extends SherlockFragmentActivity{
 	private ListaCategoriaFragment listaCategoriaFragment;
+	private DetalheCategoriaFragment  fragmentDetalhe;
 	private FragmentManager fm;
 	Context context = this;
 	Menu menu;
+	
+	EditText edtDescricao;
+	Button btnSalvar;
+	Button btnCancelar;
 	
 	public boolean mostraDetalhe(){
     	return findViewById(R.id.fragmentDetalheCategorias) != null;
     }
 	
-//	private void habilitarSalvar(boolean habilitar) {
-//		MenuItem itemSave = menu.findItem(R.id.action_save);
-//		if (itemSave != null){
-//			itemSave.setVisible(habilitar);
-//		}
-//	}
+	public void CarregaFragmentDetalhe(Categoria categoria){
+		fragmentDetalhe = DetalheCategoriaFragment.novoDetalhe(categoria);
+    	
+    	FragmentTransaction trans = fm.beginTransaction();
+		trans.replace(R.id.fragmentDetalheCategorias, fragmentDetalhe, "detalhe");
+		trans.commit();
+    }
 	
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -35,14 +43,16 @@ public class CategoriaActivity extends SherlockFragmentActivity{
         fm = getSupportFragmentManager();
         listaCategoriaFragment = (ListaCategoriaFragment)fm.findFragmentById(R.id.fragmentListaCategorias);
         
+        if(mostraDetalhe()){
+        	CarregaFragmentDetalhe(new Categoria(0, ""));
+        }
+        
         listaCategoriaFragment.setListener(new ListenerCatergoria() {
 			
 			@Override
 			public void aoClicarNaCategoria(Categoria categoria, int position) {
 				if (mostraDetalhe()){
-					FragmentTransaction trans = fm.beginTransaction();
-					trans.replace(R.id.fragmentDetalheCategorias, DetalheCategoriaFragment.novoDetalhe(categoria), "detalhe");
-					trans.commit();
+					CarregaFragmentDetalhe(categoria);
 				}else{
 					Intent intent = new Intent(context, DetalheCategoriaActivity.class);
 					intent.putExtra("categoria", categoria);
@@ -53,24 +63,29 @@ public class CategoriaActivity extends SherlockFragmentActivity{
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	getSupportMenuInflater().inflate(R.menu.incluirsalvar, menu);
-		this.menu = menu;
-		//habilitarSalvar(false);
+    	if(mostraDetalhe()){
+	    	getSupportMenuInflater().inflate(R.menu.incluiralterar, menu);
+			this.menu = menu;
+		}else{
+			getSupportMenuInflater().inflate(R.menu.incluir, menu);
+			this.menu = menu;
+		}
     	return super.onCreateOptionsMenu(menu);
     }
     
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-    	if (item.getItemId() == R.id.act_NovaCategoria){
+    	if (item.getItemId() == R.id.act_Novo){
 	    	if (mostraDetalhe()){
-				FragmentTransaction trans = fm.beginTransaction();
-				trans.replace(R.id.fragmentDetalheCategorias, DetalheCategoriaFragment.novoDetalhe(new Categoria()), "detalhe");
-				trans.commit();
+	    		CarregaFragmentDetalhe(new Categoria(0, ""));
+	    		fragmentDetalhe.Incluir();
 			}else{
 				Intent intent = new Intent(context, DetalheCategoriaActivity.class);
+				intent.putExtra("categoria", new Categoria(0, ""));
 				startActivity(intent);
 			}
-    	}
+    	}else if (item.getItemId() == R.id.act_Alterar)
+			fragmentDetalhe.habilitarCampos();
     	return super.onMenuItemSelected(featureId, item);
     }
     
