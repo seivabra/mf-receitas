@@ -946,8 +946,8 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040013;
         public static final int abs__title=0x7f04001b;
         public static final int abs__up=0x7f04000b;
-        public static final int act_AlterarCategoria=0x7f04003a;
-        public static final int act_NovaCategoria=0x7f040039;
+        public static final int act_Alterar=0x7f040039;
+        public static final int act_Novo=0x7f040038;
         public static final int btnCancelar=0x7f040037;
         public static final int btnSalvar=0x7f040036;
         public static final int disableHome=0x7f040009;
@@ -958,7 +958,6 @@ containing a value of this type.
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
         public static final int normal=0x7f040001;
-        public static final int novaCategoria=0x7f040038;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
@@ -999,7 +998,8 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f030019;
     }
     public static final class menu {
-        public static final int incluirsalvar=0x7f0b0000;
+        public static final int incluir=0x7f0b0000;
+        public static final int incluiralterar=0x7f0b0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1041,14 +1041,16 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f090007;
+        public static final int alterar=0x7f090010;
         public static final int app_name=0x7f09000d;
-        public static final int cancelar=0x7f090010;
-        public static final int codigo=0x7f090011;
-        public static final int descricao=0x7f090012;
+        public static final int cancelar=0x7f090011;
+        public static final int codigo=0x7f090012;
+        public static final int descricao=0x7f090013;
         public static final int hello_world=0x7f09000e;
         public static final int menu_settings=0x7f09000f;
         public static final int nomeCategoria=0x7f090014;
-        public static final int salvar=0x7f090013;
+        public static final int novo=0x7f090015;
+        public static final int salvar=0x7f090016;
     }
     public static final class style {
         /** 
