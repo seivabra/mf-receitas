@@ -19,7 +19,7 @@ public class NegociosCategoria {
 		return daoCategoria.InserirCategoria(categoria);
 	}
 	
-	public int AlterarCategoria(Categoria categoria){
+	public long AlterarCategoria(Categoria categoria){
 		return daoCategoria.AlterarCategoria(categoria);
 	}
 	
