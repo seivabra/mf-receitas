@@ -3,6 +3,8 @@ package br.com.mf.mfreceitas;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+
+import br.com.mf.mfreceitas.DetalheCategoriaFragment.CategoriaListener;
 import br.com.mf.mfreceitas.ListaCategoriaFragment.ListenerCatergoria;
 import ClassesBasicas.Categoria;
 import android.content.Context;
@@ -12,13 +14,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-public class CategoriaActivity extends SherlockFragmentActivity{
+public class CategoriaActivity extends SherlockFragmentActivity implements CategoriaListener{
 	private ListaCategoriaFragment listaCategoriaFragment;
 	private DetalheCategoriaFragment  fragmentDetalhe;
 	private FragmentManager fm;
 	Context context = this;
 	Menu menu;
+	
 	
 	EditText edtDescricao;
 	Button btnSalvar;
@@ -30,7 +34,7 @@ public class CategoriaActivity extends SherlockFragmentActivity{
 	
 	public void CarregaFragmentDetalhe(Categoria categoria){
 		fragmentDetalhe = DetalheCategoriaFragment.novoDetalhe(categoria);
-    	
+		fragmentDetalhe.setListenerCategoria(this);
     	FragmentTransaction trans = fm.beginTransaction();
 		trans.replace(R.id.fragmentDetalheCategorias, fragmentDetalhe, "detalhe");
 		trans.commit();
@@ -77,7 +81,7 @@ public class CategoriaActivity extends SherlockFragmentActivity{
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
     	if (item.getItemId() == R.id.act_Novo){
 	    	if (mostraDetalhe()){
-	    		CarregaFragmentDetalhe(new Categoria(0, ""));
+	    		//CarregaFragmentDetalhe(new Categoria(0, ""));
 	    		fragmentDetalhe.Incluir();
 			}else{
 				Intent intent = new Intent(context, DetalheCategoriaActivity.class);
@@ -88,7 +92,15 @@ public class CategoriaActivity extends SherlockFragmentActivity{
 			fragmentDetalhe.habilitarCampos();
     	return super.onMenuItemSelected(featureId, item);
     }
-    
-    
-    
+
+	@Override
+	public void aoSalvarCategoria(Categoria categoria) {
+		Toast.makeText(context, "Cliquei em salvar", Toast.LENGTH_SHORT).show();
+		
+	}
+
+	@Override
+	public void aoCancelarCategoria() {
+		Toast.makeText(context, "Cliquei em cancelar", Toast.LENGTH_SHORT).show();
+	}
 }

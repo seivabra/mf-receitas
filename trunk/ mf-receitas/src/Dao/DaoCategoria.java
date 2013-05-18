@@ -25,14 +25,15 @@ public class DaoCategoria {
 	
 	public long InserirCategoria(Categoria categoria){
 		contentValues = new ContentValues();  
-		contentValues.put("descricao", categoria.getDescricao());  
+		contentValues.put("descricao", categoria.getDescricao()); 
+		erro aqui
 	    database = databaseHelper.getWritableDatabase();  
 	    long id = database.insert("categorias", null, contentValues);  
 	    database.close();  
 	    return id;  
 	}
 	
-	public int AlterarCategoria(Categoria categoria){
+	public long AlterarCategoria(Categoria categoria){
 		contentValues = new ContentValues();  
 		contentValues.put("descricao", categoria.getDescricao());  
 		

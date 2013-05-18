@@ -43,7 +43,7 @@ public class Fachada {
 		return negociosCategoria.InserirCategoria(categoria);
 	}
 	
-	public int AlterarCategoria(Categoria categoria){
+	public long AlterarCategoria(Categoria categoria){
 		return negociosCategoria.AlterarCategoria(categoria);
 	}
 	
