@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class CategoriaActivity extends SherlockFragmentActivity implements CategoriaListener{
 	private ListaCategoriaFragment listaCategoriaFragment;
@@ -65,6 +64,7 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
 			}
 		});
     }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	if(mostraDetalhe()){
@@ -81,6 +81,7 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
     	if (item.getItemId() == R.id.act_Novo){
 	    	if (mostraDetalhe()){
+	    		//Da erro se mandar nova categoria
 	    		//CarregaFragmentDetalhe(new Categoria(0, ""));
 	    		fragmentDetalhe.Incluir();
 			}else{
@@ -95,12 +96,18 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
 
 	@Override
 	public void aoSalvarCategoria(Categoria categoria) {
-		Toast.makeText(context, "Cliquei em salvar", Toast.LENGTH_SHORT).show();
-		
+		//Tem que saber se estorou exceção
+		listaCategoriaFragment.ListarCategorias();
+		fragmentDetalhe.DesabilitarCampos();
 	}
 
 	@Override
-	public void aoCancelarCategoria() {
-		Toast.makeText(context, "Cliquei em cancelar", Toast.LENGTH_SHORT).show();
+	public void aoCancelarCategoria(Categoria categoriaAntiga) {
+		//Se cancelar um novo ele pega a ultima categoria selecionada... porque na hora de incluir eu não mando uma categoria zerada, só limpo o campo
+		categoriaAntiga = listaCategoriaFragment.achaCategoriaPeloCodigo(categoriaAntiga);
+		fragmentDetalhe.PreencheCampos(categoriaAntiga);
+		fragmentDetalhe.DesabilitarCampos();
 	}
+
+	
 }

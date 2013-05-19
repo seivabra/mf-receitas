@@ -28,6 +28,22 @@ public class ListaCategoriaFragment extends ListFragment {
 		}
 	}
 	
+	public Categoria achaCategoriaPeloCodigo(Categoria categoria){
+		//É mais rápido varrer um for ou procurar no banco pelo código?
+		if (categoria.getId() == 0){
+			if(categorias.size() > 0)
+				categoria = categorias.get(0);
+		}else{
+			for (int i = 0; i < categorias.size(); i++) {
+				if (categorias.get(i).getId() == categoria.getId()){
+					categoria = categorias.get(i);
+					break;
+				}
+			}
+		}
+		return categoria;
+	}
+	
 	public void setListener(ListenerCatergoria listener) {
 		this.listener = listener;
 	}

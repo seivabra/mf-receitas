@@ -26,7 +26,7 @@ public class DaoCategoria {
 	public long InserirCategoria(Categoria categoria){
 		contentValues = new ContentValues();  
 		contentValues.put("descricao", categoria.getDescricao()); 
-		erro aqui
+		//erro aqui
 	    database = databaseHelper.getWritableDatabase();  
 	    long id = database.insert("categorias", null, contentValues);  
 	    database.close();  
@@ -73,13 +73,15 @@ public class DaoCategoria {
 	public ArrayList<Categoria> PesquisarCategoriaDescricao(String descricao){
 		ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();  
 		  
+		//Upper
+		
 	    String[] columns = new String[]{  
 	       "_id", "descricao"};  
 	    String[] args = new String[]{descricao+"%"};  
 	  
 	    database = databaseHelper.getWritableDatabase();  
-	    Cursor cursor = database.query("carros", columns,   
-	       "nome like ?", args, null, null, "nome");
+	    Cursor cursor = database.query("categorias", columns,   
+	       "descricao like ?", args, null, null, "descricao");
 	    
 	   cursor.moveToFirst();  
 	    while(!cursor.isAfterLast()){  
