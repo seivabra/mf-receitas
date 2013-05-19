@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class DetalheCategoriaFragment extends Fragment{
 	
@@ -17,10 +18,13 @@ public class DetalheCategoriaFragment extends Fragment{
 	Button btnCancelar;
 	CategoriaListener listener;
 	Categoria categoria;
+	Fachada fachada;
 	
 	public void Incluir() {
 		habilitarCampos();
-		edtDescricao.setText("");
+		//edtDescricao.setText("");
+		testar aqui
+		categoria = new Categoria(0, "");
 	}
 	
 	public void habilitarCampos() {
@@ -35,16 +39,21 @@ public class DetalheCategoriaFragment extends Fragment{
 		btnSalvar.setEnabled(false);
 		btnCancelar.setEnabled(false);
 	}
-	Fachada fachada = new Fachada(getActivity());
-	public long salvar(Categoria categoria){
-		if(categoria.getId() == 0)
-			return fachada.InserirCategoria(categoria);
-		else
-			return fachada.AlterarCategoria(categoria);
-		
-//		if(listener != null)	
-//			listener.aoSalvarCategoria(categoria);
-	}
+	
+//	public void onActivityCreated(Bundle savedInstanceState) {
+//		fachada = new Fachada(getActivity());
+//	};
+	
+	
+//	public long salvar(Categoria categoria){
+//		if(categoria.getId() == 0)
+//			return fachada.InserirCategoria(categoria);
+//		else
+//			return fachada.AlterarCategoria(categoria);
+//		
+////		if(listener != null)	
+////			listener.aoSalvarCategoria(categoria);
+//	}
 	
 	public void setListenerCategoria(CategoriaListener listener) {
 		this.listener = listener;
@@ -75,17 +84,24 @@ public class DetalheCategoriaFragment extends Fragment{
 		btnSalvar = (Button)layout.findViewById(R.id.btnSalvar);
 		btnCancelar = (Button)layout.findViewById(R.id.btnCancelar);
 		
+		fachada = new Fachada(getActivity());
+		
 		btnSalvar.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				if(listener != null){
 					categoria.setDescricao(edtDescricao.getText().toString());
-					long a = 0;
-					if(categoria.getId() == 0)
-						a = fachada.InserirCategoria(categoria);
+					if(categoria.getId() == 0){
+						try {
+							categoria.setId((int)(fachada.InserirCategoria(categoria)));
+						} catch (Exception e) {
+							Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+						}
+					}
 					else
-						fachada.AlterarCategoria(categoria);	
+						fachada.AlterarCategoria(categoria);
+					
 					listener.aoSalvarCategoria(categoria);
 				}
 			}
@@ -94,8 +110,7 @@ public class DetalheCategoriaFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				listener.aoCancelarCategoria();
-				
+				listener.aoCancelarCategoria(categoria);
 			}
 		});
 		
@@ -107,9 +122,13 @@ public class DetalheCategoriaFragment extends Fragment{
 		return layout;
 	}
 	
+	public void PreencheCampos(Categoria categoria){
+		edtDescricao.setText(categoria.getDescricao());
+	}
+	
 	public interface CategoriaListener{
 		void aoSalvarCategoria(Categoria categoria);
-		void aoCancelarCategoria();
+		void aoCancelarCategoria(Categoria categoriaAntiga);
 	}
 	
 }

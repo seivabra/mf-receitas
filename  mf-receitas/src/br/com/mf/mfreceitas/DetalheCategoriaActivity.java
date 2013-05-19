@@ -1,5 +1,8 @@
 package br.com.mf.mfreceitas;
 
+import br.com.mf.mfreceitas.DetalheCategoriaFragment.CategoriaListener;
+import br.com.mf.mfreceitas.ListaCategoriaFragment.ListenerCatergoria;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -7,7 +10,7 @@ import ClassesBasicas.Categoria;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 
-public class DetalheCategoriaActivity extends SherlockFragmentActivity{
+public class DetalheCategoriaActivity extends SherlockFragmentActivity implements CategoriaListener{
 	Menu menu;
 	DetalheCategoriaFragment fragmentDetalhe;
 	@Override
@@ -36,5 +39,20 @@ public class DetalheCategoriaActivity extends SherlockFragmentActivity{
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
+
+	@Override
+	public void aoSalvarCategoria(Categoria categoria) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aoCancelarCategoria(Categoria categoriaAntiga) {
+		//Ta dando erro
+		finish();
+	}
+
+
+	
 
 }

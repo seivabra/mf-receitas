@@ -39,7 +39,7 @@ public class Fachada {
 		negociosUsuario = new NegociosUsuario();
 	}
 	
-	public long InserirCategoria(Categoria categoria){
+	public long InserirCategoria(Categoria categoria) throws Exception{
 		return negociosCategoria.InserirCategoria(categoria);
 	}
 	
