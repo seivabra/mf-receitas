@@ -23,7 +23,7 @@ public class DetalheCategoriaFragment extends Fragment{
 	public void Incluir() {
 		habilitarCampos();
 		//edtDescricao.setText("");
-		testar aqui
+		//testar aqui
 		categoria = new Categoria(0, "");
 	}
 	

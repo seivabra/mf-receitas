@@ -12,8 +12,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.ContextMenu;
+import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CategoriaActivity extends SherlockFragmentActivity implements CategoriaListener{
 	private ListaCategoriaFragment listaCategoriaFragment;
@@ -21,11 +27,14 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
 	private FragmentManager fm;
 	Context context = this;
 	Menu menu;
+	Fachada fachada = new Fachada(context);
+	
 	
 	
 	EditText edtDescricao;
 	Button btnSalvar;
 	Button btnCancelar;
+	
 	
 	public boolean mostraDetalhe(){
     	return findViewById(R.id.fragmentDetalheCategorias) != null;
@@ -49,6 +58,8 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
         if(mostraDetalhe()){
         	CarregaFragmentDetalhe(new Categoria(0, ""));
         }
+        
+         
         
         listaCategoriaFragment.setListener(new ListenerCatergoria() {
 			
@@ -77,6 +88,28 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Categ
     	return super.onCreateOptionsMenu(menu);
     }
     
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+    		ContextMenuInfo menuInfo) {
+    	super.onCreateContextMenu(menu, v, menuInfo);
+    	getMenuInflater().inflate(R.menu.context_menu_alterar_excluir, menu); 
+    }
+    @Override
+    public boolean onContextItemSelected(android.view.MenuItem item) {
+    	AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();  
+		Categoria categoria = (Categoria)listaCategoriaFragment.getListView().getItemAtPosition(info.position);
+		
+		switch (item.getItemId()) {  
+        case R.id.opAlterar:
+        	fragmentDetalhe = DetalheCategoriaFragment.novoDetalhe(categoria);
+        	return true;
+        case R.id.opExcluir:
+			//fachada.ExcluirCategoria(categoria);
+        	Toast.makeText(context, "Excuikjsdafjah", Toast.LENGTH_SHORT).show();
+        	return true;
+		}
+		return super.onContextItemSelected(item);
+    } 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
     	if (item.getItemId() == R.id.act_Novo){
