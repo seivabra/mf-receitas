@@ -8,5 +8,10 @@
         android:id="@+id/act_Alterar"
         android:showAsAction="always"
         android:title="@string/alterar"/>  
+        
+  <item
+        android:id="@+id/act_Voltar"
+        android:showAsAction="always"
+        android:title="@string/voltar"/>  
 
 </menu>

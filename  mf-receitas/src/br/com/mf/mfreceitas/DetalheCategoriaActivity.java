@@ -1,7 +1,7 @@
 package br.com.mf.mfreceitas;
 
-import br.com.mf.mfreceitas.DetalheCategoriaFragment.CategoriaListener;
-import br.com.mf.mfreceitas.ListaCategoriaFragment.ListenerCatergoria;
+import br.com.mf.mfreceitas.DetalheCategoriaFragment.DetalheCategoriaListener;
+import br.com.mf.mfreceitas.ListaCategoriaFragment.CatergoriaListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -10,7 +10,7 @@ import ClassesBasicas.Categoria;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 
-public class DetalheCategoriaActivity extends SherlockFragmentActivity implements CategoriaListener{
+public class DetalheCategoriaActivity extends SherlockFragmentActivity implements DetalheCategoriaListener{
 	Menu menu;
 	DetalheCategoriaFragment fragmentDetalhe;
 	@Override
@@ -21,6 +21,8 @@ public class DetalheCategoriaActivity extends SherlockFragmentActivity implement
 		FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 		trans.add(android.R.id.content, fragmentDetalhe, "detalhe");
 		trans.commit();
+		
+		fragmentDetalhe.setDetalheListenerCategoria(this);
 	}
 	
 	@Override
@@ -30,12 +32,22 @@ public class DetalheCategoriaActivity extends SherlockFragmentActivity implement
 		return super.onCreateOptionsMenu(menu);
 	}
 	
+//	public void CarregaFragmentDetalhe(Categoria categoria){
+//		fragmentDetalhe = DetalheCategoriaFragment.novoDetalhe(categoria);
+//		fragmentDetalhe.setDetalheListenerCategoria(this);
+//    	FragmentTransaction trans = fm.beginTransaction();
+//		trans.replace(R.id.fragmentDetalheCategorias, fragmentDetalhe, "detalhe");
+//		trans.commit();
+//    }
+	
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		if(item.getItemId() == R.id.act_Novo){
 			fragmentDetalhe.Incluir();
 		}else if(item.getItemId() == R.id.act_Alterar){
 			fragmentDetalhe.habilitarCampos();
+		}else if(item.getItemId() == R.id.act_Voltar){
+			finish();
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
@@ -43,7 +55,7 @@ public class DetalheCategoriaActivity extends SherlockFragmentActivity implement
 	@Override
 	public void aoSalvarCategoria(Categoria categoria) {
 		// TODO Auto-generated method stub
-		
+		finish();
 	}
 
 	@Override
