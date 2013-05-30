@@ -1,8 +1,6 @@
 package br.com.mf.mfreceitas;
 
 import br.com.mf.mfreceitas.DetalheCategoriaFragment.DetalheCategoriaListener;
-import br.com.mf.mfreceitas.ListaCategoriaFragment.CatergoriaListener;
-
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -27,7 +25,7 @@ public class DetalheCategoriaActivity extends SherlockFragmentActivity implement
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.incluiralterar, menu);
+		getSupportMenuInflater().inflate(R.menu.incluiralterarvoltar, menu);
 		this.menu = menu;
 		return super.onCreateOptionsMenu(menu);
 	}

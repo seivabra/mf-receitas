@@ -94,6 +94,31 @@ public class DaoCategoria {
 	    return listaCategorias;
 	}
 	
+	public Boolean AchouCategoriaIgual(Categoria categoria){
+		Boolean achouCategoria = false;  
+		
+		String[] columns = new String[]{"_id", "descricao"};  
+	    String[] args = new String[]{categoria.getDescricao(), String.valueOf(categoria.getId())};//+"%"};  
+	  
+	    database = databaseHelper.getWritableDatabase();  
+	    Cursor cursor = database.query("categorias", columns,   
+	       "upper(descricao) = upper(?) and _id <> ?", args, null, null, "descricao");
+	   Categoria categoriaIgual = null;
+	   cursor.moveToFirst();  
+	    while(!cursor.isAfterLast()){  
+	    	categoriaIgual = preencherCategoria(cursor);  
+	    	cursor.moveToNext();  
+	    }
+
+	    if (categoriaIgual != null)
+		   achouCategoria = true;
+	    
+	    cursor.close();  
+	    database.close(); 
+	    
+	    return achouCategoria;
+	}
+	
 	private Categoria preencherCategoria(Cursor cursor) {  
 		Categoria categoria = new Categoria();  
 		categoria.setId((int)cursor.getLong(0));   

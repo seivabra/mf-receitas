@@ -92,6 +92,8 @@ public class DetalheCategoriaFragment extends Fragment{
 			public void onClick(View v) {
 				if(listener != null){
 					categoria.setDescricao(edtDescricao.getText().toString());
+					if (fachada.AchouCategoriaIgual(categoria))
+						Toast.makeText(getActivity(), "achou categoria", Toast.LENGTH_SHORT).show();
 					if(categoria.getId() == 0){
 						try {
 							categoria.setId((int)(fachada.InserirCategoria(categoria)));

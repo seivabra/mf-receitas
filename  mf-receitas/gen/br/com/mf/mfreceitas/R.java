@@ -947,8 +947,9 @@ containing a value of this type.
         public static final int abs__title=0x7f04001b;
         public static final int abs__up=0x7f04000b;
         public static final int act_Alterar=0x7f04003b;
+        public static final int act_Excluir=0x7f04003c;
         public static final int act_Novo=0x7f04003a;
-        public static final int act_Voltar=0x7f04003c;
+        public static final int act_Voltar=0x7f04003d;
         public static final int btnCancelar=0x7f040037;
         public static final int btnSalvar=0x7f040036;
         public static final int disableHome=0x7f040009;
@@ -1003,7 +1004,8 @@ containing a value of this type.
     public static final class menu {
         public static final int context_menu_alterar_excluir=0x7f0b0000;
         public static final int incluir=0x7f0b0001;
-        public static final int incluiralterar=0x7f0b0002;
+        public static final int incluiralterarexcluir=0x7f0b0002;
+        public static final int incluiralterarvoltar=0x7f0b0003;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
