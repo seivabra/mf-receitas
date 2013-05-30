@@ -2,21 +2,23 @@ package br.com.mf.mfreceitas;
 
 import java.util.ArrayList;
 
-import com.actionbarsherlock.internal.widget.IcsAdapterView.AdapterContextMenuInfo;
 import ClassesBasicas.Categoria;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 public class ListaCategoriaFragment extends ListFragment {
 	ArrayList<Categoria> categorias;
-	private ListenerCatergoria listener;
+	private CatergoriaListener listener;
 	private Fachada fachada;
 	DetalheCategoriaFragment detalheFragment;
 	@Override
@@ -52,36 +54,56 @@ public class ListaCategoriaFragment extends ListFragment {
 		return categoria;
 	}
 	
-	public void setListener(ListenerCatergoria listener) {
+	public void setCatergoriaListener(CatergoriaListener listener) {
 		this.listener = listener;
 	}
 	
-	public interface ListenerCatergoria{
+	public interface CatergoriaListener{
 		void aoClicarNaCategoria(Categoria categoria, int position);
+		void aoSelecionarAlterarCategoria(Categoria categoria);
+		void aoSelecionarExcluirCategoria(Categoria categoria);
 	}
 	
-//	@Override
-//	public void onCreateContextMenu(ContextMenu menu, View v,
-//			ContextMenuInfo menuInfo) {
-//		getActivity().getMenuInflater().inflate(R.menu.context_menu_alterar_excluir, menu);
-//		super.onCreateContextMenu(menu, v, menuInfo);
-//	}
-//	
-//	@Override
-//	public boolean onContextItemSelected(MenuItem item) {
-//		
-//		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();  
-//		Categoria categoria = (Categoria)getListView().getItemAtPosition(info.position);
-//		
-//		switch (item.getItemId()) {  
-//        case R.id.opAlterar:
-//        	detalheFragment  = DetalheCategoriaFragment.novoDetalhe(categoria);
-//        case R.id.opExcluir:
-//			//fachada.ExcluirCategoria(categoria);
-//        	Toast.makeText(getActivity(), "Excuikjsdafjah", Toast.LENGTH_SHORT).show();
-//		}
-//		return super.onContextItemSelected(item);
-//	}
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		getActivity().getMenuInflater().inflate(R.menu.context_menu_alterar_excluir, menu);
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();  
+		final Categoria categoria = (Categoria)getListView().getItemAtPosition(info.position);
+		
+		switch (item.getItemId()) {  
+        case R.id.opAlterar:
+        	if (listener != null){
+    			listener.aoSelecionarAlterarCategoria(categoria);
+    		}
+        	break;
+        case R.id.opExcluir:
+        	if (listener != null){
+        		AlertDialog.Builder dialogDeletarItem = new AlertDialog.Builder(getActivity());
+     		    dialogDeletarItem.setTitle("Alerta");
+     		    dialogDeletarItem.setMessage("Deseja deletar esse item?");
+    			   //builder.setIcon(R.drawable.ic_tab_name_selected);
+     		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+    					public void onClick(DialogInterface dialog, int which) {
+    						fachada.ExcluirCategoria(categoria);
+    						ListarCategorias();
+    					}
+    						
+    				});
+     		   dialogDeletarItem.setNegativeButton("Não", null);
+     		    dialogDeletarItem.show();
+    			listener.aoSelecionarExcluirCategoria(categoria);
+    		}
+        	break;
+		}
+		return super.onContextItemSelected(item);
+	}
 	
 	public void ListarCategorias(){
 		//Quando ta voltando sem nada ta voltando null e dando erro
@@ -89,4 +111,6 @@ public class ListaCategoriaFragment extends ListFragment {
 		//categorias = new ArrayList<Categoria>();
 		setListAdapter(new ArrayAdapter<Categoria>(getActivity(), android.R.layout.simple_list_item_1, categorias));
 	}
+	
+	
 }

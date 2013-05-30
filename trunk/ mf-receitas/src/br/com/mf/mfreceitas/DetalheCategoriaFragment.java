@@ -13,25 +13,25 @@ import android.widget.Toast;
 
 public class DetalheCategoriaFragment extends Fragment{
 	
-	EditText edtDescricao;
-	Button btnSalvar;
-	Button btnCancelar;
-	CategoriaListener listener;
+	static EditText edtDescricao;
+	static Button btnSalvar;
+	static Button btnCancelar;
+	DetalheCategoriaListener listener;
 	Categoria categoria;
 	Fachada fachada;
+	static Boolean habilitaCampos;
 	
 	public void Incluir() {
 		habilitarCampos();
-		//edtDescricao.setText("");
-		//testar aqui
 		categoria = new Categoria(0, "");
+		edtDescricao.setText(categoria.getDescricao());
 	}
 	
 	public void habilitarCampos() {
 		edtDescricao.setEnabled(true);
 		btnSalvar.setEnabled(true);
 		btnCancelar.setEnabled(true);
-		edtDescricao.selectAll();
+		//edtDescricao.selectAll();
 	}
 	
 	public void DesabilitarCampos() {
@@ -55,7 +55,7 @@ public class DetalheCategoriaFragment extends Fragment{
 ////			listener.aoSalvarCategoria(categoria);
 //	}
 	
-	public void setListenerCategoria(CategoriaListener listener) {
+	public void setDetalheListenerCategoria(DetalheCategoriaListener listener) {
 		this.listener = listener;
 	}
 	
@@ -114,11 +114,17 @@ public class DetalheCategoriaFragment extends Fragment{
 			}
 		});
 		
-		if(categoria.getId() > 0)
-			DesabilitarCampos();
+//		if(categoria.getId() > 0)
+//			DesabilitarCampos();
 		
 		edtDescricao.setText(categoria.getDescricao());
 		
+		if ((habilitaCampos == null) ||(habilitaCampos == false))
+			DesabilitarCampos();
+		else{
+			habilitarCampos();
+			edtDescricao.selectAll();
+		}
 		return layout;
 	}
 	
@@ -126,9 +132,10 @@ public class DetalheCategoriaFragment extends Fragment{
 		edtDescricao.setText(categoria.getDescricao());
 	}
 	
-	public interface CategoriaListener{
+	public interface DetalheCategoriaListener{
 		void aoSalvarCategoria(Categoria categoria);
 		void aoCancelarCategoria(Categoria categoriaAntiga);
+		
 	}
 	
 }

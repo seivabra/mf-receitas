@@ -948,6 +948,7 @@ containing a value of this type.
         public static final int abs__up=0x7f04000b;
         public static final int act_Alterar=0x7f04003b;
         public static final int act_Novo=0x7f04003a;
+        public static final int act_Voltar=0x7f04003c;
         public static final int btnCancelar=0x7f040037;
         public static final int btnSalvar=0x7f040036;
         public static final int disableHome=0x7f040009;
@@ -1055,6 +1056,7 @@ containing a value of this type.
         public static final int nomeCategoria=0x7f090015;
         public static final int novo=0x7f090016;
         public static final int salvar=0x7f090017;
+        public static final int voltar=0x7f090018;
     }
     public static final class style {
         /** 

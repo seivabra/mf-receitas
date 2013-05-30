@@ -12,6 +12,7 @@
     <string name="excluir">Excluir</string>
     <string name="nomeCategoria">Nome da Categoria</string>
     <string name="novo">Novo</string>
-     <string name="salvar">Salvar</string>
+    <string name="salvar">Salvar</string>
+    <string name="voltar">Voltar</string>
     
 </resources>
