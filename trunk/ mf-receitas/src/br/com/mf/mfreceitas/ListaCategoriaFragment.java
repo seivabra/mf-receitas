@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ListaCategoriaFragment extends ListFragment {
 	ArrayList<Categoria> categorias;
@@ -37,6 +36,13 @@ public class ListaCategoriaFragment extends ListFragment {
 		}
 	}
 
+	public Categoria PrimeiraCategoriaLista(){
+		Categoria primeiraCategoria = null;
+		if ((categorias != null) && (categorias.size() > 0))
+			 primeiraCategoria = categorias.get(0);
+		
+		return primeiraCategoria;
+	}
 	
 	public Categoria achaCategoriaPeloCodigo(Categoria categoria){
 		//É mais rápido varrer um for ou procurar no banco pelo código?
@@ -61,7 +67,7 @@ public class ListaCategoriaFragment extends ListFragment {
 	public interface CatergoriaListener{
 		void aoClicarNaCategoria(Categoria categoria, int position);
 		void aoSelecionarAlterarCategoria(Categoria categoria);
-		void aoSelecionarExcluirCategoria(Categoria categoria);
+		void aoExcluirCategoria();
 	}
 	
 	@Override
@@ -85,24 +91,28 @@ public class ListaCategoriaFragment extends ListFragment {
         	break;
         case R.id.opExcluir:
         	if (listener != null){
-        		AlertDialog.Builder dialogDeletarItem = new AlertDialog.Builder(getActivity());
-     		    dialogDeletarItem.setTitle("Alerta");
-     		    dialogDeletarItem.setMessage("Deseja deletar esse item?");
-    			   //builder.setIcon(R.drawable.ic_tab_name_selected);
-     		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-    					public void onClick(DialogInterface dialog, int which) {
-    						fachada.ExcluirCategoria(categoria);
-    						ListarCategorias();
-    					}
-    						
-    				});
-     		   dialogDeletarItem.setNegativeButton("Não", null);
-     		    dialogDeletarItem.show();
-    			listener.aoSelecionarExcluirCategoria(categoria);
+        		ExcluirCategoria(categoria);
+    			listener.aoExcluirCategoria();
     		}
         	break;
 		}
 		return super.onContextItemSelected(item);
+	}
+	
+	public void ExcluirCategoria(final Categoria categoria){
+		AlertDialog.Builder dialogDeletarItem = new AlertDialog.Builder(getActivity());
+		    dialogDeletarItem.setTitle("Alerta");
+		    dialogDeletarItem.setMessage("Deseja deletar esse item?");
+		   //builder.setIcon(R.drawable.ic_tab_name_selected);
+		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					fachada.ExcluirCategoria(categoria);
+					ListarCategorias();
+				}
+					
+			});
+		    dialogDeletarItem.setNegativeButton("Não", null);
+		    dialogDeletarItem.show();
 	}
 	
 	public void ListarCategorias(){

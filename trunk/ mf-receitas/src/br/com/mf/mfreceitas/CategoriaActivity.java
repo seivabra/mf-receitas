@@ -21,6 +21,7 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
 	Context context = this;
 	Menu menu;
 	Fachada fachada = new Fachada(context);
+	Categoria categoriaSelecionada;
 	
 	
 	public boolean mostraDetalhe(){
@@ -42,8 +43,15 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
         fm = getSupportFragmentManager();
         listaCategoriaFragment = (ListaCategoriaFragment)fm.findFragmentById(R.id.fragmentListaCategorias);
         
+      //selecionar a primeira categoria
+        não ta mais salvando
         if(mostraDetalhe()){
-        	CarregaFragmentDetalhe(new Categoria(0, ""));
+        	Categoria primeiraCategoriaLista = listaCategoriaFragment.PrimeiraCategoriaLista();
+        	//não deu certo porque passa primeiro aqui e depois no create do fragment
+        	if(primeiraCategoriaLista != null)
+        		CarregaFragmentDetalhe(primeiraCategoriaLista);
+        	else
+        		CarregaFragmentDetalhe(new Categoria(0, ""));
         }
         
          
@@ -53,6 +61,7 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
 			@Override
 			public void aoClicarNaCategoria(Categoria categoria, int position) {
 				DetalheCategoriaFragment.habilitaCampos = false;
+				categoriaSelecionada = categoria;
 				if (mostraDetalhe()){
 					CarregaFragmentDetalhe(categoria);
 				}else{
@@ -78,21 +87,23 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
 			}
 
 			@Override
-			public void aoSelecionarExcluirCategoria(Categoria categoria) {
-
+			public void aoExcluirCategoria() {
+				if (mostraDetalhe()){
+					//selecionar a primeira categoria
+				}
 			}
 		});
     }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	//if(mostraDetalhe()){
-	    	getSupportMenuInflater().inflate(R.menu.incluir, menu);
+    	if(mostraDetalhe()){
+	    	getSupportMenuInflater().inflate(R.menu.incluiralterarexcluir, menu);
 			this.menu = menu;
-		//}else{
-			//getSupportMenuInflater().inflate(R.menu.incluiralterar, menu);
-			//this.menu = menu;
-		//}
+		}else{
+			getSupportMenuInflater().inflate(R.menu.incluir, menu);
+			this.menu = menu;
+		}
     	return super.onCreateOptionsMenu(menu);
     }
     
@@ -111,8 +122,10 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
 				startActivity(intent);
 				
 			}
-    	}//else if (item.getItemId() == R.id.act_Alterar)
-//			fragmentDetalhe.habilitarCampos();
+    	}else if (item.getItemId() == R.id.act_Alterar)
+			fragmentDetalhe.habilitarCampos();
+    	else if (item.getItemId() == R.id.act_Excluir)
+    		listaCategoriaFragment.ExcluirCategoria(categoriaSelecionada);
     	return super.onMenuItemSelected(featureId, item);
     }
 
@@ -131,5 +144,9 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
 		fragmentDetalhe.DesabilitarCampos();
 	}
 
-	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		listaCategoriaFragment.ListarCategorias();
+	}
 }

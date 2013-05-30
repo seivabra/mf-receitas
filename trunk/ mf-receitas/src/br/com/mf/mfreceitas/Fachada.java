@@ -170,4 +170,8 @@ public class Fachada {
 	public int ExcluirUsuario(Usuario usuario){
 		return negociosUsuario.ExcluirUsuario(usuario);
 	}
+	
+	public Boolean AchouCategoriaIgual(Categoria categoria){
+		return negociosCategoria.AchouCategoriaIgual(categoria);
+	}
 }

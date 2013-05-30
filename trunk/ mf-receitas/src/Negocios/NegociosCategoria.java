@@ -37,4 +37,7 @@ public class NegociosCategoria {
 	public ArrayList<Categoria> PesquisarCategoriaDescricao(String descricao){
 		return daoCategoria.PesquisarCategoriaDescricao(descricao);
 	}
+	public Boolean AchouCategoriaIgual(Categoria categoria){
+		return AchouCategoriaIgual(categoria);
+	}
 }
