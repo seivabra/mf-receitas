@@ -32,4 +32,11 @@
         android:onClick="btnMntUnidadeClick"
         android:text="Unidade" />
 
+    <Button
+        android:id="@+id/btnReceita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnMntReceitaClick"
+        android:text="Receita" />
+
 </LinearLayout>
