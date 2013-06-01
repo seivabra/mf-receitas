@@ -28,4 +28,8 @@ public class Main extends Activity{
 	public void btnMntUnidadeClick(View v){
 		startActivity(new Intent(this, UnidadeActivity.class));
 	}
+	
+	public void btnMntReceitaClick(View v){
+		startActivity(new Intent(this, ReceitaActivity.class));
+	}
 }

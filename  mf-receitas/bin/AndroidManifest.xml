@@ -30,6 +30,7 @@
         <activity android:name="br.com.mf.mfreceitas.DetalheProdutoActivity"> </activity>
         <activity android:name="br.com.mf.mfreceitas.UnidadeActivity"> </activity>
         <activity android:name="br.com.mf.mfreceitas.DetalheUnidadeActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.ReceitaActivity"> </activity>
     </application>
 
 </manifest>
