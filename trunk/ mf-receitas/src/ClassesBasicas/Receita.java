@@ -1,8 +1,10 @@
 package ClassesBasicas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Receita {
+@SuppressWarnings("serial")
+public class Receita implements Serializable{
 	int id;
 	String descricao;
 	ArrayList<Item> itens;
@@ -11,6 +13,13 @@ public class Receita {
 	int tempoCongelador;
 	Double custoMedio;
 	String modoPreparo;
+	Categoria categoria;
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	//Image Imagem;
 	public Receita() {
 		super();

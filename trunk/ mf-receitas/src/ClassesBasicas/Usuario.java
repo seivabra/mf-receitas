@@ -1,6 +1,9 @@
 package ClassesBasicas;
 
-public class Usuario {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Usuario implements Serializable{
 	int id;
 	String login;
 	String senha;

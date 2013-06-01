@@ -1,14 +1,19 @@
 package Negocios;
 
 import java.util.ArrayList;
-
+import android.content.Context;
 import ClassesBasicas.Produto;
 import Dao.DaoProduto;
 
 public class NegociosProduto {
-	DaoProduto daoProduto = new DaoProduto();
 	
-	public int InserirProduto(Produto listaCompras){
+	DaoProduto daoProduto;
+	
+	public NegociosProduto(Context context) {
+		daoProduto = new DaoProduto(context);
+	}
+	
+	public long InserirProduto(Produto listaCompras){
 		return daoProduto.InserirProduto(listaCompras);
 	}
 	
@@ -26,5 +31,9 @@ public class NegociosProduto {
 	
 	public ArrayList<Produto> PesquisarProdutoDescricao(String descricao){
 		return daoProduto.PesquisarProdutoDescricao(descricao);
+	}
+	
+	public Boolean AchouProdutoIgual(Produto produto){
+		return daoProduto.AchouProdutoIgual(produto);
 	}
 }

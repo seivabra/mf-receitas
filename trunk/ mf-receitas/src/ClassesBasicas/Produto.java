@@ -1,6 +1,9 @@
 package ClassesBasicas;
 
-public class Produto {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Produto implements Serializable{
 	int id;
 	String descricao;
 	public Produto() {

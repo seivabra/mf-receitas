@@ -15,12 +15,6 @@ public class DaoCategoria {
 	private ContentValues contentValues;
 	public DaoCategoria(Context context){
 		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1, scriptCreate);
-		
-//		Categoria categoria = new Categoria(4, "Jantar");
-//		ExcluirCategoria(categoria);
-//		
-//		Categoria categoria1 = new Categoria(3, "Sobremesa");
-//		AlterarCategoria(categoria1);
 	}
 	
 	public long InserirCategoria(Categoria categoria){

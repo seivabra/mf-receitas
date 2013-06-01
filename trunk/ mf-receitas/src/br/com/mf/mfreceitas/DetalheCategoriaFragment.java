@@ -92,19 +92,22 @@ public class DetalheCategoriaFragment extends Fragment{
 			public void onClick(View v) {
 				if(listener != null){
 					categoria.setDescricao(edtDescricao.getText().toString());
-					if (fachada.AchouCategoriaIgual(categoria))
-						Toast.makeText(getActivity(), "achou categoria", Toast.LENGTH_SHORT).show();
-					if(categoria.getId() == 0){
-						try {
-							categoria.setId((int)(fachada.InserirCategoria(categoria)));
-						} catch (Exception e) {
-							Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-						}
-					}
-					else
-						fachada.AlterarCategoria(categoria);
 					
-					listener.aoSalvarCategoria(categoria);
+					if (fachada.AchouCategoriaIgual(categoria))
+						Toast.makeText(getActivity(), "R.string.msgCategoriaExiste", Toast.LENGTH_SHORT).show();
+					else{
+						if(categoria.getId() == 0){
+							try {
+								categoria.setId((int)(fachada.InserirCategoria(categoria)));
+							} catch (Exception e) {
+								Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+							}
+						}
+						else
+							fachada.AlterarCategoria(categoria);
+						
+						listener.aoSalvarCategoria(categoria);
+					}
 				}
 			}
 		});

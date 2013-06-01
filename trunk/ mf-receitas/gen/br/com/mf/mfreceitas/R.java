@@ -946,22 +946,32 @@ containing a value of this type.
         public static final int abs__textButton=0x7f040013;
         public static final int abs__title=0x7f04001b;
         public static final int abs__up=0x7f04000b;
-        public static final int act_Alterar=0x7f04003b;
-        public static final int act_Excluir=0x7f04003c;
-        public static final int act_Novo=0x7f04003a;
-        public static final int act_Voltar=0x7f04003d;
+        public static final int act_Alterar=0x7f040045;
+        public static final int act_Excluir=0x7f040046;
+        public static final int act_Novo=0x7f040044;
+        public static final int act_Voltar=0x7f040047;
         public static final int btnCancelar=0x7f040037;
+        public static final int btnCategoria=0x7f04003a;
+        public static final int btnMarca=0x7f04003b;
+        public static final int btnProduto=0x7f04003c;
         public static final int btnSalvar=0x7f040036;
+        public static final int btnUnidade=0x7f04003d;
         public static final int disableHome=0x7f040009;
         public static final int edit_query=0x7f040026;
         public static final int edtDescricao=0x7f040035;
         public static final int fragmentDetalheCategorias=0x7f040033;
+        public static final int fragmentDetalheMarcas=0x7f040039;
+        public static final int fragmentDetalheProdutos=0x7f04003f;
+        public static final int fragmentDetalheUnidades=0x7f040041;
         public static final int fragmentListaCategorias=0x7f040032;
+        public static final int fragmentListaMarcas=0x7f040038;
+        public static final int fragmentListaProdutos=0x7f04003e;
+        public static final int fragmentListaUnidades=0x7f040040;
         public static final int homeAsUp=0x7f040006;
         public static final int listMode=0x7f040002;
         public static final int normal=0x7f040001;
-        public static final int opAlterar=0x7f040038;
-        public static final int opExcluir=0x7f040039;
+        public static final int opAlterar=0x7f040042;
+        public static final int opExcluir=0x7f040043;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
         public static final int showTitle=0x7f040007;
@@ -998,8 +1008,15 @@ containing a value of this type.
         public static final int abs__simple_dropdown_hint=0x7f030015;
         public static final int categoria=0x7f030016;
         public static final int detalhecategoria=0x7f030017;
-        public static final int sherlock_spinner_dropdown_item=0x7f030018;
-        public static final int sherlock_spinner_item=0x7f030019;
+        public static final int detalhemarca=0x7f030018;
+        public static final int detalheproduto=0x7f030019;
+        public static final int detalheunidade=0x7f03001a;
+        public static final int marca=0x7f03001b;
+        public static final int menu=0x7f03001c;
+        public static final int produto=0x7f03001d;
+        public static final int sherlock_spinner_dropdown_item=0x7f03001e;
+        public static final int sherlock_spinner_item=0x7f03001f;
+        public static final int unidade=0x7f030020;
     }
     public static final class menu {
         public static final int context_menu_alterar_excluir=0x7f0b0000;
@@ -1052,13 +1069,20 @@ containing a value of this type.
         public static final int cancelar=0x7f090011;
         public static final int codigo=0x7f090012;
         public static final int descricao=0x7f090013;
+        public static final int descricaoCategoria=0x7f090019;
+        public static final int descricaoMarca=0x7f09001a;
+        public static final int descricaoProduto=0x7f09001b;
+        public static final int descricaoUnidade=0x7f09001c;
         public static final int excluir=0x7f090014;
         public static final int hello_world=0x7f09000e;
         public static final int menu_settings=0x7f09000f;
-        public static final int nomeCategoria=0x7f090015;
-        public static final int novo=0x7f090016;
-        public static final int salvar=0x7f090017;
-        public static final int voltar=0x7f090018;
+        public static final int msgCategoriaExiste=0x7f090015;
+        public static final int msgMarcaExiste=0x7f090016;
+        public static final int msgProdutoExiste=0x7f090017;
+        public static final int msgUnidadeExiste=0x7f090018;
+        public static final int novo=0x7f09001d;
+        public static final int salvar=0x7f09001e;
+        public static final int voltar=0x7f09001f;
     }
     public static final class style {
         /** 

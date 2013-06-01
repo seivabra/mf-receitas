@@ -1,6 +1,9 @@
 package ClassesBasicas;
 
-public class Unidade {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Unidade implements Serializable{
 	int id;
 	String descricao;
 	public Unidade() {

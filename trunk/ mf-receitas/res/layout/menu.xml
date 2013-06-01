@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnCategoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnMntCategoriaClick"
+        android:text="Categoria" />
+
+    <Button
+        android:id="@+id/btnMarca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnMntMarcaClick"
+        android:text="Marca" />
+
+    <Button
+        android:id="@+id/btnProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnMntProdutoClick"
+        android:text="Produto" />
+
+    <Button
+        android:id="@+id/btnUnidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnMntUnidadeClick"
+        android:text="Unidade" />
+
+</LinearLayout>
