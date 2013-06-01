@@ -32,10 +32,10 @@ public class Fachada {
 	public Fachada(Context context){
 		negociosCategoria = new NegociosCategoria(context);
 		negocioListaCompras = new NegociosListaCompras();
-		negociosMarca = new NegociosMarca();
-		negociosProduto = new NegociosProduto();
+		negociosMarca = new NegociosMarca(context);
+		negociosProduto = new NegociosProduto(context);
 		negociosReceita = new NegociosReceita();
-		negociosUnidade = new NegociosUnidade();
+		negociosUnidade = new NegociosUnidade(context);
 		negociosUsuario = new NegociosUsuario();
 	}
 	
@@ -79,7 +79,7 @@ public class Fachada {
 		return negocioListaCompras.PesquisarListaComprasDescricao(descricao);
 	}
 	
-	public int InserirMarca(Marca marca){
+	public long InserirMarca(Marca marca){
 		return negociosMarca.InserirMarca(marca);
 	}
 	
@@ -91,7 +91,7 @@ public class Fachada {
 		return negociosMarca.ExcluirMarca(marca);
 	}
 	
-	public ArrayList<Marca> marca(){
+	public ArrayList<Marca> ListarMarcas(){
 		return negociosMarca.ListarMarcas();
 	}
 	
@@ -99,7 +99,7 @@ public class Fachada {
 		return negociosMarca.PesquisarMarcaDescricao(descricao);
 	}
 	
-	public int InserirProduto(Produto listaCompras){
+	public long InserirProduto(Produto listaCompras){
 		return negociosProduto.InserirProduto(listaCompras);
 	}
 	
@@ -139,7 +139,7 @@ public class Fachada {
 		return negociosReceita.PesquisarReceitaDescricao(descricao);
 	}
 	
-	public int InserirUnidade(Unidade unidade){
+	public long InserirUnidade(Unidade unidade){
 		return negociosUnidade.InserirUnidade(unidade);
 	}
 	
@@ -173,5 +173,17 @@ public class Fachada {
 	
 	public Boolean AchouCategoriaIgual(Categoria categoria){
 		return negociosCategoria.AchouCategoriaIgual(categoria);
+	}
+	
+	public Boolean AchouMarcaIgual(Marca marca){
+		return negociosMarca.AchouMarcaIgual(marca);
+	}
+	
+	public Boolean AchouProdutoIgual(Produto produto){
+		return negociosProduto.AchouProdutoIgual(produto);
+	}
+	
+	public Boolean AchouUnidadeIgual(Unidade unidade){
+		return negociosUnidade.AchouUnidadeIgual(unidade);
 	}
 }

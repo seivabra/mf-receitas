@@ -1,8 +1,10 @@
 package ClassesBasicas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListaCompras{
+@SuppressWarnings("serial")
+public class ListaCompras implements Serializable{
 	int id;
 	String descricao;
 	ArrayList<Item> itens;

@@ -1,6 +1,9 @@
 package ClassesBasicas;
 
-public class Marca {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Marca implements Serializable{
 	int id;
 	String descricao;
 	public Marca() {

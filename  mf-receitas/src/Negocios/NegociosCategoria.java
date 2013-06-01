@@ -14,14 +14,12 @@ public class NegociosCategoria {
 	}
 	
 	public long InserirCategoria(Categoria categoria) throws Exception{
-		//Verificar se já existe uma categoria com o mesmo nome, mas código diferente(Usar o upper)
 		if (categoria.getDescricao().equals(""))
 			throw new Exception("Preencha a descrição da categoria");
 		return daoCategoria.InserirCategoria(categoria);
 	}
 	
 	public long AlterarCategoria(Categoria categoria){
-		//Verificar se já existe uma categoria com o mesmo nome, mas código diferente(Usar o upper)
 		return daoCategoria.AlterarCategoria(categoria);
 	}
 	
@@ -38,6 +36,6 @@ public class NegociosCategoria {
 		return daoCategoria.PesquisarCategoriaDescricao(descricao);
 	}
 	public Boolean AchouCategoriaIgual(Categoria categoria){
-		return AchouCategoriaIgual(categoria);
+		return daoCategoria.AchouCategoriaIgual(categoria);
 	}
 }

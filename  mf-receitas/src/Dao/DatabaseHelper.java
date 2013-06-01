@@ -19,12 +19,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		database.execSQL(scriptCreate);
+		//database.execSQL(scriptCreate);
+		database.execSQL("create table categorias (_id integer primary key autoincrement, descricao text not null);");
+		database.execSQL("create table marcas (_id integer primary key autoincrement, descricao text not null);");
+		database.execSQL("create table produtos (_id integer primary key autoincrement, descricao text not null);");
+		database.execSQL("create table unidades (_id integer primary key autoincrement, descricao text not null);");
+//		database.execSQL("create table receitas (_id integer primary key autoincrement, descricao text not null " +
+//					 	 ", qtdPessoasServe integer, tempoForno integer, tempoCongelador integer, custoMedio double "+
+//					 	 ", modoPreparo text, codCategoria integer;");
+//		database.execSQL("create table receitas (codReceita integer not null, codProduto integer" +
+//					 	 ", codUnidade integer, codMarca integer, quantidade float;");
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
+	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
+		database.execSQL(scriptCreate);
 		
 	}
 }

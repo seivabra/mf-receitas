@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.com.mf.mfreceitas.CategoriaActivity"
+            android:name="br.com.mf.mfreceitas.Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,14 @@
             </intent-filter>
         </activity>
         
+        <activity android:name="br.com.mf.mfreceitas.CategoriaActivity"> </activity>
         <activity android:name="br.com.mf.mfreceitas.DetalheCategoriaActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.MarcaActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.DetalheMarcaActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.ProdutoActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.DetalheProdutoActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.UnidadeActivity"> </activity>
+        <activity android:name="br.com.mf.mfreceitas.DetalheUnidadeActivity"> </activity>
     </application>
 
 </manifest>

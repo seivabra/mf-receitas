@@ -44,7 +44,6 @@ public class CategoriaActivity extends SherlockFragmentActivity implements Detal
         listaCategoriaFragment = (ListaCategoriaFragment)fm.findFragmentById(R.id.fragmentListaCategorias);
         
       //selecionar a primeira categoria
-        não ta mais salvando
         if(mostraDetalhe()){
         	Categoria primeiraCategoriaLista = listaCategoriaFragment.PrimeiraCategoriaLista();
         	//não deu certo porque passa primeiro aqui e depois no create do fragment

@@ -1,14 +1,19 @@
 package Negocios;
 
 import java.util.ArrayList;
-
+import android.content.Context;
 import ClassesBasicas.Unidade;
 import Dao.DaoUnidade;
 
 public class NegociosUnidade {
-	DaoUnidade daoUnidade = new DaoUnidade();
 	
-	public int InserirUnidade(Unidade unidade){
+	DaoUnidade daoUnidade;
+	
+	public NegociosUnidade(Context context) {
+		daoUnidade = new DaoUnidade(context);
+	}
+	
+	public long InserirUnidade(Unidade unidade){
 		return daoUnidade.InserirUnidade(unidade);
 	}
 	
@@ -26,5 +31,9 @@ public class NegociosUnidade {
 	
 	public ArrayList<Unidade> PesquisarUnidadeDescricao(String descricao){
 		return daoUnidade.PesquisarUnidadeDescricao(descricao);
+	}
+	
+	public Boolean AchouUnidadeIgual(Unidade unidade){
+		return daoUnidade.AchouUnidadeIgual(unidade);
 	}
 }

@@ -26,6 +26,8 @@ public class ListaCategoriaFragment extends ListFragment {
 		fachada = new Fachada(getActivity());
 		ListarCategorias();
 		registerForContextMenu(getListView()); 
+		
+		//fazer selecionar o primeiro item quando mostrardetalhes
 	}
 	
 	@Override
@@ -106,6 +108,7 @@ public class ListaCategoriaFragment extends ListFragment {
 		   //builder.setIcon(R.drawable.ic_tab_name_selected);
 		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
+					// fazer pesquisar se a categoria é usada em alguma receita
 					fachada.ExcluirCategoria(categoria);
 					ListarCategorias();
 				}

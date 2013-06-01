@@ -10,7 +10,14 @@
     <string name="codigo">Código</string>
     <string name="descricao">Descrição</string>
     <string name="excluir">Excluir</string>
-    <string name="nomeCategoria">Nome da Categoria</string>
+    <string name="msgCategoriaExiste">Essa categoria já está cadastrada.</string>
+    <string name="msgMarcaExiste">Essa marca já está cadastrada.</string>
+    <string name="msgProdutoExiste">Esse produto já está cadastrado.</string>
+    <string name="msgUnidadeExiste">Essa unidade já está cadastrada.</string>
+    <string name="descricaoCategoria">Descrição da Categoria</string>
+    <string name="descricaoMarca">Descrição da Marca</string>
+    <string name="descricaoProduto">Descrição do Produto</string>
+    <string name="descricaoUnidade">Descrição da Unidade</string>
     <string name="novo">Novo</string>
     <string name="salvar">Salvar</string>
     <string name="voltar">Voltar</string>
