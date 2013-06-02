@@ -10,7 +10,7 @@ public class Main extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
-		this.deleteDatabase("MfReceitas");
+		//this.deleteDatabase("MfReceitas");
 	}
 	
 	public void btnMntCategoriaClick(View v){
