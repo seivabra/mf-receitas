@@ -12,10 +12,10 @@ public class DaoMarca {
 	
 	private SQLiteDatabase database;  
     private DatabaseHelper databaseHelper; 
-	private String scriptCreate = "create table marcas (_id integer primary key autoincrement, descricao text not null);";
+	//private String scriptCreate = "create table marcas (_id integer primary key autoincrement, descricao text not null);";
 	private ContentValues contentValues;
 	public DaoMarca(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1, scriptCreate);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 6/*, scriptCreate*/);
 	}
 	
 	public long InserirMarca(Marca marca){

@@ -12,11 +12,11 @@ public class DaoProduto {
 
 	private SQLiteDatabase database;  
     private DatabaseHelper databaseHelper; 
-	private String scriptCreate = "create table produtos (_id integer primary key autoincrement, descricao text not null);";
+	//private String scriptCreate = "create table produtos (_id integer primary key autoincrement, descricao text not null);";
 	private ContentValues contentValues;
 	
 	public DaoProduto(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1, scriptCreate);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 6/*, scriptCreate*/);
 	}
 	
 	public long InserirProduto(Produto produto){

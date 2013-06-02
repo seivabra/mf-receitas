@@ -117,7 +117,8 @@
 	                android:layout_weight="1"
 	                android:onClick="btnDiminuirClick"
 	                android:text="@string/menos" />
-	
+
+	            
 	        </LinearLayout>
 	        
 	        <TextView
@@ -156,6 +157,13 @@
 	                android:layout_weight="1"
 	                android:onClick="btnDiminuirClick"
 	                android:text="@string/menos" />
+	            
+	            <Spinner
+	                android:id="@+id/spinnerTempoForno"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1" />
+	
 	
 	        </LinearLayout>
 	        
@@ -195,6 +203,12 @@
 	                android:layout_weight="1"
 	                android:onClick="btnDiminuirClick"
 	                android:text="@string/menos" />
+	            
+	            <Spinner
+	                android:id="@+id/spinnerTempoCongelador"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1" />
 	
 	        </LinearLayout>
 	        
@@ -234,6 +248,12 @@
 	                android:layout_weight="1"
 	                android:onClick="btnDiminuirClick"
 	                android:text="@string/menos" />
+	            
+	            <Spinner
+	                android:id="@+id/spinnerTempoPreparo"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_weight="1" />
 	
 	        </LinearLayout>
 	
@@ -262,155 +282,164 @@
 	
 	    </LinearLayout>
     </ScrollView>
-	
-    <TableLayout
-        android:id="@+id/TableLayout1"
-        android:layout_width="0dp"
+	<LinearLayout 
+	    android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/green"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/ingredientes"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-		<TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
-	        <TextView
-	            android:id="@+id/textView4"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/produto"
-	            android:textAppearance="?android:attr/textAppearanceMedium" />
-	
-	        <Spinner
-	            android:id="@+id/spinnerProduto"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content" 
-	            android:layout_weight="1"/>
-	    </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/unidade"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/spinnerUnidadeProduto"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" 
-                android:layout_marginLeft="5dp"/>
-
-        </TableRow>
-        
-        <TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/marca"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/spinnerMarcaProduto"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" 
-                android:layout_marginLeft="5dp"/>
-
-        </TableRow>
-        
-        <TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
-            
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/preco"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-            <EditText
-	            android:id="@+id/edtPrecoProduto"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
-	            android:inputType="numberDecimal" />
-
-        
-        </TableRow>
-    
-    <TableRow
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp">
-            
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/quantidade"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-            <EditText
-	            android:id="@+id/edtQtdProduto"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
-	            android:layout_weight="1"
-	            android:inputType="number" />
-			<Button
-	            android:id="@+id/btnAddQtdProduto"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="btnAdicionarClick"
-	            android:text="@string/mais" />
-				
-			<Button
-	            android:id="@+id/btnDimQtdProduto"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:onClick="btnDiminuirClick"
-	            android:text="@string/menos" />
-        
-        </TableRow>
-        
-    	<Button
-	            android:id="@+id/btnAdicionarProduto"
-	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content"
-	            android:layout_marginTop="10dp"
-	            android:onClick="btnAdicionarProdutoClick"
-	            android:text="@string/adicionar" />
-        
+        android:layout_weight="1"
+        android:orientation="vertical">
+	    <ScrollView 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+		    <TableLayout
+		        android:id="@+id/TableLayout1"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+		
+		        <TextView
+		            android:id="@+id/textView2"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:background="@color/green"
+		            android:gravity="center"
+		            android:padding="10dp"
+		            android:text="@string/ingredientes"
+		            android:textAppearance="?android:attr/textAppearanceLarge" />
+				<TableRow
+		            android:layout_width="match_parent"
+		        	android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginLeft="5dp">
+			        <TextView
+			            android:id="@+id/textView4"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:text="@string/produto"
+			            android:textAppearance="?android:attr/textAppearanceMedium" />
+			
+			        <Spinner
+			            android:id="@+id/spinnerProduto"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content" 
+			            android:layout_weight="1"/>
+			    </TableRow>
+		
+		        <TableRow
+		            android:layout_width="match_parent"
+		        	android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginLeft="5dp">
+		
+		            <TextView
+		                android:id="@+id/textView5"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="@string/unidade"
+		                android:textAppearance="?android:attr/textAppearanceMedium" />
+		
+		            <Spinner
+		                android:id="@+id/spinnerUnidadeProduto"
+		                android:layout_width="0dp"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1" 
+		                android:layout_marginLeft="5dp"/>
+		
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="match_parent"
+		        	android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginLeft="5dp">
+		
+		            <TextView
+		                android:id="@+id/textView6"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="@string/marca"
+		                android:textAppearance="?android:attr/textAppearanceMedium" />
+		
+		            <Spinner
+		                android:id="@+id/spinnerMarcaProduto"
+		                android:layout_width="0dp"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1" 
+		                android:layout_marginLeft="5dp"/>
+		
+		        </TableRow>
+		        
+		        <TableRow
+		            android:layout_width="match_parent"
+		        	android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginLeft="5dp">
+		            
+		            <TextView
+		                android:id="@+id/textView7"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="@string/preco"
+		                android:textAppearance="?android:attr/textAppearanceMedium" />
+		            <EditText
+			            android:id="@+id/edtPrecoProduto"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="1"
+			            android:inputType="numberDecimal" />
+		
+		        
+		        </TableRow>
+		    
+		    <TableRow
+		        	android:layout_width="match_parent"
+		        	android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:layout_marginLeft="5dp">
+		            
+		            <TextView
+		                android:id="@+id/textView8"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:text="@string/quantidade"
+		                android:textAppearance="?android:attr/textAppearanceMedium" />
+		            <EditText
+			            android:id="@+id/edtQtdProduto"
+			            android:layout_width="0dp"
+			            android:layout_height="wrap_content"
+			            android:layout_weight="1"
+			            android:inputType="number" />
+					<Button
+			            android:id="@+id/btnAddQtdProduto"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:onClick="btnAdicionarClick"
+			            android:text="@string/mais" />
+						
+					<Button
+			            android:id="@+id/btnDimQtdProduto"
+			            android:layout_width="wrap_content"
+			            android:layout_height="wrap_content"
+			            android:onClick="btnDiminuirClick"
+			            android:text="@string/menos" />
+		        
+		        </TableRow>
+		        
+		    	<Button
+		            android:id="@+id/btnAdicionarProduto"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="10dp"
+		            android:onClick="btnAdicionarProdutoClick"
+		            android:text="@string/adicionar" />
+	        </TableLayout>
+        </ScrollView>
     	<ListView
-            android:id="@+id/listProdutos"
+            android:id="@+id/listItens"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
         </ListView>
-    </TableLayout>
+        
+    	</LinearLayout>
+    
 
     <LinearLayout
         android:layout_width="0dp"
@@ -447,7 +476,7 @@
 
         <Button
             android:id="@+id/btnAdicionarPasso"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnAdicionarPassoClick"
             android:text="@string/adicionar" />

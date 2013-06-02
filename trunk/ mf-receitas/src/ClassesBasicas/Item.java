@@ -10,11 +10,13 @@ public class Item implements Serializable{
 	Marca marca;
 	int tamanho;
 	int quantidade;
+	Double preco;
+	
 	public Item() {
 		super();
 	}
 	public Item(int id, Produto produto, Unidade unidade, Marca marca,
-			int tamanho, int quantidade) {
+			int tamanho, int quantidade, Double preco) {
 		super();
 		this.id = id;
 		this.produto = produto;
@@ -22,6 +24,7 @@ public class Item implements Serializable{
 		this.marca = marca;
 		this.tamanho = tamanho;
 		this.quantidade = quantidade;
+		this.preco = preco;
 	}
 	public int getId() {
 		return id;
@@ -58,5 +61,16 @@ public class Item implements Serializable{
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+	public Double getPreco() {
+		return preco;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+	
+	@Override
+	public String toString() {
+		return String.valueOf(quantidade) + unidade.getDescricao() + " - " + produto.getDescricao() + " " + marca.getDescricao();
 	}
 }

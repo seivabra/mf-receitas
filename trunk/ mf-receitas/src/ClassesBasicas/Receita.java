@@ -11,8 +11,12 @@ public class Receita implements Serializable{
 	int qtdPessoasServe;
 	int tempoForno;
 	int tempoCongelador;
+	int tempoPreparo;
 	Double custoMedio;
 	String modoPreparo;
+	String medidaTempoForno;
+	String medidaTempoCongelador;
+	String medidaTempoPreparo;
 	Categoria categoria;
 	public Categoria getCategoria() {
 		return categoria;
@@ -25,9 +29,12 @@ public class Receita implements Serializable{
 		super();
 		itens = new ArrayList<Item>();
 	}
+	
 	public Receita(int id, String descricao, ArrayList<Item> itens,
 			int qtdPessoasServe, int tempoForno, int tempoCongelador,
-			Double custoMedio, String modoPreparo) {
+			int tempoPreparo, Double custoMedio, String modoPreparo,
+			String medidaTempoForno, String medidaTempoCongelador,
+			String medidaTempoPreparo, Categoria categoria) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -35,8 +42,13 @@ public class Receita implements Serializable{
 		this.qtdPessoasServe = qtdPessoasServe;
 		this.tempoForno = tempoForno;
 		this.tempoCongelador = tempoCongelador;
+		this.tempoPreparo = tempoPreparo;
 		this.custoMedio = custoMedio;
 		this.modoPreparo = modoPreparo;
+		this.medidaTempoForno = medidaTempoForno;
+		this.medidaTempoCongelador = medidaTempoCongelador;
+		this.medidaTempoPreparo = medidaTempoPreparo;
+		this.categoria = categoria;
 	}
 	public int getId() {
 		return id;
@@ -74,6 +86,12 @@ public class Receita implements Serializable{
 	public void setTempoCongelador(int tempoCongelador) {
 		this.tempoCongelador = tempoCongelador;
 	}
+	public int getTempoPreparo() {
+		return tempoPreparo;
+	}
+	public void setTempoPreparo(int tempoPreparo) {
+		this.tempoPreparo = tempoPreparo;
+	}
 	public Double getCustoMedio() {
 		return custoMedio;
 	}
@@ -85,6 +103,24 @@ public class Receita implements Serializable{
 	}
 	public void setModoPreparo(String modoPreparo) {
 		this.modoPreparo = modoPreparo;
+	}
+	public String getMedidaTempoForno() {
+		return medidaTempoForno;
+	}
+	public void setMedidaTempoForno(String medidaTempoForno) {
+		this.medidaTempoForno = medidaTempoForno;
+	}
+	public String getMedidaTempoCongelador() {
+		return medidaTempoCongelador;
+	}
+	public void setMedidaTempoCongelador(String medidaTempoCongelador) {
+		this.medidaTempoCongelador = medidaTempoCongelador;
+	}
+	public String getMedidaTempoPreparo() {
+		return medidaTempoPreparo;
+	}
+	public void setMedidaTempoPreparo(String medidaTempoPreparo) {
+		this.medidaTempoPreparo = medidaTempoPreparo;
 	}
 	@Override
 	public String toString() {
