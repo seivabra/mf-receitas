@@ -11,6 +11,9 @@ import ClassesBasicas.Produto;
 import ClassesBasicas.Receita;
 import ClassesBasicas.Unidade;
 import ClassesBasicas.Usuario;
+import Excecoes.SemDescricaoException;
+import Excecoes.SemIngredientesException;
+import Excecoes.SemPassosException;
 import Negocios.NegociosCategoria;
 import Negocios.NegociosListaCompras;
 import Negocios.NegociosMarca;
@@ -34,7 +37,7 @@ public class Fachada {
 		negocioListaCompras = new NegociosListaCompras();
 		negociosMarca = new NegociosMarca(context);
 		negociosProduto = new NegociosProduto(context);
-		negociosReceita = new NegociosReceita();
+		negociosReceita = new NegociosReceita(context);
 		negociosUnidade = new NegociosUnidade(context);
 		negociosUsuario = new NegociosUsuario();
 	}
@@ -119,8 +122,8 @@ public class Fachada {
 		return negociosProduto.PesquisarProdutoDescricao(descricao);
 	}
 	
-	public int InserirReceita(Receita listaCompras){
-		return negociosReceita.InserirReceita(listaCompras);
+	public long InserirReceita(Receita receita) throws SemDescricaoException, SemIngredientesException, SemPassosException{
+		return negociosReceita.InserirReceita(receita);
 	}
 	
 	public int AlterarReceita(Receita listaCompras){

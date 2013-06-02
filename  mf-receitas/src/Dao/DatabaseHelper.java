@@ -5,15 +5,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-	private String scriptCreate;
+//	private String scriptCreate;
 //	private String scriptDelete;
 	
 	public DatabaseHelper(Context ctx, String nomeBd, 
-		      int versaoBanco, String scriptCreate/*, 
+		      int versaoBanco/*, String scriptCreate/*, 
 		      String scriptDelete*/) {
 
 		      super(ctx, nomeBd, null, versaoBanco);
-		      this.scriptCreate = scriptCreate;
+		      //this.scriptCreate = scriptCreate;
 		      //this.scriptDelete = scriptDelete;
 		  }
 
@@ -28,12 +28,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //					 	 ", qtdPessoasServe integer, tempoForno integer, tempoCongelador integer, custoMedio double "+
 //					 	 ", modoPreparo text, codCategoria integer;");
 //		database.execSQL("create table receitas (codReceita integer not null, codProduto integer" +
-//					 	 ", codUnidade integer, codMarca integer, quantidade float;");
+//					 	 ", codUnidade integer, codMarca integer, quantidade double;");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-		database.execSQL(scriptCreate);
-		
+		switch (newVersion) {  
+        case 5:
+        	database.execSQL("create table receitas (_id integer primary key autoincrement, descricao text not null " +
+				 	 		 ", qtdPessoasServe integer, tempoForno integer, tempoCongelador integer, custoMedio double "+
+				 	 		 ", modoPreparo text, codCategoria integer, medidaTempoForno text, medidaTempoCongelador text, "+
+				 	 		 "medidaTempoPreparo text);");
+        case 6:
+        	database.execSQL("drop table itensReceitas;");
+        	database.execSQL("create table itensReceita (codReceita integer not null, codProduto integer" +
+        					 ", codUnidade integer, codMarca integer, quantidade integer, preco double);");
+        	
+//          case R.id.btnAddQtdProduto:
+//        	edt = edtQuantidade;
+//        	break;
+		}	
 	}
 }

@@ -9,11 +9,13 @@
     <string name="cancelar">Cancelar</string>
     <string name="categoria">Categoria</string>
     <string name="codigo">Código</string>
-    <string name="custoMedio">Custo Médio</string>
+    <string name="custoMedio">Custo Médio - R$</string>
     <string name="descricao">Descrição</string>
     <string name="excluir">Excluir</string>
+    <string name="excluirIngrediente">Excluir Ingrediente</string>
+    <string name="excluirPasso">Excluir Passo</string>
     <string name="informacoes">Informações</string>
-    <string name="ingredientesPassos">Ingredientes/Passos</string>
+    <string name="ingredientesModoPreparo">Ingredientes/Modo de Preparo</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="mais">+</string>
     <string name="marca">Marca</string>
@@ -27,8 +29,12 @@
     <string name="descricaoMarca">Descrição da Marca</string>
     <string name="descricaoProduto">Descrição do Produto</string>
     <string name="descricaoUnidade">Descrição da Unidade</string>
+    <string name="msgDescricaoEmBranco">Preencha a descrição.</string>
+    <string name="msgListaIngredientesVazia">A receita tem que ter pelo menos um ingrediente.</string>
+    <string name="msgListaPassosVazia">A receita tem que ter pelo menos um passo.</string>
     <string name="novo">Novo</string>
-    <string name="preco">Preço</string>
+    <string name="preco">Preço - R$</string>
+    <string name="qtdMaiorZero">A quantidade deve ser maior do que zero.</string>
     <string name="quantidade">Quantidade</string>
     <string name="qtdPessoasServe">Quantidade de Pessoas que Serve</string>
     <string name="novo">Novo</string>
@@ -37,6 +43,7 @@
     <string name="produto">Produto</string>
     <string name="rs">R$</string>
     <string name="salvar">Salvar</string>
+    <string name="salvarReceita">Salvar Receita</string>
     <string name="tempoCongelador">Tempo no Congelador</string>
     <string name="tempoForno">Tempo no Forno</string>
     <string name="tempoPreparo">Tempo de Preparo</string>
