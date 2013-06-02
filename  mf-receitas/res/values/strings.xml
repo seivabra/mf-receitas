@@ -7,11 +7,13 @@
     <string name="adicionar">Adicionar</string>
     <string name="alterar">Alterar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="categoria">Categoria</string>
     <string name="codigo">Código</string>
     <string name="custoMedio">Custo Médio</string>
     <string name="descricao">Descrição</string>
     <string name="excluir">Excluir</string>
     <string name="informacoes">Informações</string>
+    <string name="ingredientesPassos">Ingredientes/Passos</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="mais">+</string>
     <string name="marca">Marca</string>
