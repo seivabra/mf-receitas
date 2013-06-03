@@ -16,7 +16,7 @@ public class DaoProduto {
 	private ContentValues contentValues;
 	
 	public DaoProduto(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 6/*, scriptCreate*/);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 7/*, scriptCreate*/);
 	}
 	
 	public long InserirProduto(Produto produto){
