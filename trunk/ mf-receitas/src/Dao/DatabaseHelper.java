@@ -40,7 +40,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				 	 		 ", modoPreparo text, codCategoria integer, medidaTempoForno text, medidaTempoCongelador text, "+
 				 	 		 "medidaTempoPreparo text);");
         case 6:
-        	database.execSQL("drop table itensReceitas;");
+        	database.execSQL("create table itensReceita (codReceita integer not null, codProduto integer" +
+        					 ", codUnidade integer, codMarca integer, quantidade integer, preco double);");
+        	
+        case 7:
+        	database.execSQL("drop table receitas");
+        	database.execSQL("drop table itensReceita");
+        	database.execSQL("create table receitas (_id integer primary key autoincrement, descricao text not null " +
+				 	 		 ", qtdPessoasServe integer, tempoForno integer, tempoCongelador integer, tempoPreparo integer, custoMedio double "+
+				 	 		 ", modoPreparo text, codCategoria integer, medidaTempoForno text, medidaTempoCongelador text, "+
+				 	 		 "medidaTempoPreparo text);");
         	database.execSQL("create table itensReceita (codReceita integer not null, codProduto integer" +
         					 ", codUnidade integer, codMarca integer, quantidade integer, preco double);");
         	

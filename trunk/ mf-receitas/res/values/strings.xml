@@ -7,10 +7,10 @@
     <string name="adicionar">Adicionar</string>
     <string name="alterar">Alterar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="categoria">Categoria</string>
+    <string name="categoria">Categoria:</string>
     <string name="codigo">Código</string>
     <string name="custoMedio">Custo Médio - R$</string>
-    <string name="descricao">Descrição</string>
+    <string name="descricao">Descrição:</string>
     <string name="excluir">Excluir</string>
     <string name="excluirIngrediente">Excluir Ingrediente</string>
     <string name="excluirPasso">Excluir Passo</string>
@@ -18,7 +18,7 @@
     <string name="ingredientesModoPreparo">Ingredientes/Modo de Preparo</string>
     <string name="ingredientes">Ingredientes</string>
     <string name="mais">+</string>
-    <string name="marca">Marca</string>
+    <string name="marca">Marca:</string>
     <string name="menos">-</string>
     <string name="modoPreparo">Modo de Preparo</string>
     <string name="msgCategoriaExiste">Essa categoria já está cadastrada.</string>
@@ -35,8 +35,8 @@
     <string name="novo">Novo</string>
     <string name="preco">Preço - R$</string>
     <string name="qtdMaiorZero">A quantidade deve ser maior do que zero.</string>
-    <string name="quantidade">Quantidade</string>
-    <string name="qtdPessoasServe">Quantidade de Pessoas que Serve</string>
+    <string name="quantidade">Quantidade:</string>
+    <string name="qtdPessoasServe">Quantidade de Pessoas que Serve:</string>
     <string name="novo">Novo</string>
     <string name="passo">Passo</string>
     <string name="passos">Passos</string>
@@ -44,10 +44,10 @@
     <string name="rs">R$</string>
     <string name="salvar">Salvar</string>
     <string name="salvarReceita">Salvar Receita</string>
-    <string name="tempoCongelador">Tempo no Congelador</string>
-    <string name="tempoForno">Tempo no Forno</string>
-    <string name="tempoPreparo">Tempo de Preparo</string>
-    <string name="unidade">Unidade</string>
+    <string name="tempoCongelador">Tempo no Congelador:</string>
+    <string name="tempoForno">Tempo no Forno:</string>
+    <string name="tempoPreparo">Tempo de Preparo:</string>
+    <string name="unidade">Unidade:</string>
     <string name="voltar">Voltar</string>
     
 </resources>
