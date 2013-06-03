@@ -15,6 +15,7 @@ import Excecoes.SemDescricaoException;
 import Excecoes.SemIngredientesException;
 import Excecoes.SemPassosException;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -68,6 +69,7 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	ArrayList<Item> listaItens = new ArrayList<Item>();
 	ArrayList<String> listaPassos = new ArrayList<String>();
 	ArrayList<String> listaTempo = new ArrayList<String>();
+	String arquivo;
 	
 	private Uri fileUri;
 	
@@ -231,52 +233,77 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	}
 	
 	public void btnIncluirAlterarImagemClick(View v) {
-		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		//Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		//fileUri = getOutputMediaFileUri(); 
-		File image = new  File("/sdcard/image.jpg");
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
-		startActivityForResult(intent, 1);
-	}
-	
-	private static Uri getOutputMediaFileUri(/*int type*/){
-	      //return Uri.fromFile(getOutputMediaFile(type));
-		return Uri.fromFile(getOutputMediaFile());
-	}
-
-	/** Create a File for saving an image or video */
-	private static File getOutputMediaFile(/*int type*/){
-	    // To be safe, you should check that the SDCard is mounted
-	    // using Environment.getExternalStorageState() before doing this.
-
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "MFReceitas");
-	    // This location works best if you want the created images to be shared
-	    // between applications and persist after your app has been uninstalled.
-
-	    // Create the storage directory if it does not exist
-	    if (! mediaStorageDir.exists()){
-	        if (! mediaStorageDir.mkdirs()){
-	           // Log.d("MyCameraApp", "failed to create directory");
-	            return null;
-	        }
-	    }
-
-	    // Create a media file name
-	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-	    File mediaFile;
-	    //if (type == MEDIA_TYPE_IMAGE){
-	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "IMG_"+ timeStamp + ".jpg");
-//	    } else if(type == MEDIA_TYPE_VIDEO) {
-//	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-//	        "VID_"+ timeStamp + ".mp4");
-//	    } else {
-//	        return null;
+//		File image = new  File("/sdcard/image.jpg");
+//		intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
+//		startActivityForResult(intent, 1);
+		
+//		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//		String arquivo = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
+//		
+//		
+//		
+//		File file = new File(arquivo);
+		
+//		if (! file.exists()){
+//	        if (! file.mkdirs()){
+//	           // Log.d("MyCameraApp", "failed to create directory");
+//	            return null;
+//	        }
 //	    }
-
-	    return mediaFile;
+		
+//		Uri outputFileUri = Uri.fromFile(file);
+//		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+//		startActivityForResult(intent, 1);
+		
+		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+			
+			Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+			arquivo = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
+			File file = new File(arquivo);
+			Uri outputFileUri = Uri.fromFile(file);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+			startActivityForResult(intent, 1);
+		}else
+			Toast.makeText(getBaseContext(), "O cartão de memória não está acessível", Toast.LENGTH_SHORT).show();
+		
 	}
 	
+//	private static Uri getOutputMediaFileUri(/*int type*/){
+//	      //return Uri.fromFile(getOutputMediaFile(type));
+//		return Uri.fromFile(getOutputMediaFile());
+//	}
+//
+//	/** Create a File for saving an image or video */
+//	private static File getOutputMediaFile(/*int type*/){
+//	    // To be safe, you should check that the SDCard is mounted
+//	    // using Environment.getExternalStorageState() before doing this.
+//
+//	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+//	              Environment.DIRECTORY_PICTURES), "MFReceitas");
+//	    // This location works best if you want the created images to be shared
+//	    // between applications and persist after your app has been uninstalled.
+//
+//	    // Create the storage directory if it does not exist
+//	    
+//
+//	    // Create a media file name
+//	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//	    File mediaFile;
+//	    //if (type == MEDIA_TYPE_IMAGE){
+//	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+//	        "IMG_"+ timeStamp + ".jpg");
+////	    } else if(type == MEDIA_TYPE_VIDEO) {
+////	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+////	        "VID_"+ timeStamp + ".mp4");
+////	    } else {
+////	        return null;
+////	    }
+//
+//	    return mediaFile;
+//	}
+//	
 	public void btnAdicionarProdutoClick(View v){
 		Item item = new Item();
 		item.setProduto(adapterProduto.getItem(spinnerProduto.getSelectedItemPosition()));
@@ -362,21 +389,15 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == 1) {
-	        if (resultCode == RESULT_OK) {
-	            // Image captured and saved to fileUri specified in the Intent
-	            Toast.makeText(this, "Image saved to:\n" +
-	                     data.getData(), Toast.LENGTH_LONG).show();
-	            
-	            File image = new  File(data.getData() + ".jpg"); 
-	            if(image.exists()){
-	                     imgReceita.setImageBitmap(BitmapFactory.decodeFile(image.getAbsolutePath()));
-	        }		
-	        } else if (resultCode == RESULT_CANCELED) {
-	            // User cancelled the image capture
-	        } else {
-	            // Image capture failed, advise user
-	        }
+		if ((requestCode == 1) && (resultCode == RESULT_OK)){
+			if(data != null){
+				Bundle bundle = data.getExtras();
+				if(bundle != null){
+					Bitmap bitmap = (Bitmap)bundle.get("data");
+					imgReceita.setImageBitmap(bitmap);
+					//imgImagem.setImageBitmap(arquivo);
+				}
+			}
 	    }
 	}
 	@Override
