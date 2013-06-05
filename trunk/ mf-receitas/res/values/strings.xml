@@ -11,6 +11,7 @@
     <string name="codigo">Código</string>
     <string name="custoMedio">Custo Médio - R$</string>
     <string name="descricao">Descrição:</string>
+    <string name="enviar">Enviar</string>
     <string name="excluir">Excluir</string>
     <string name="excluirIngrediente">Excluir Ingrediente</string>
     <string name="excluirPasso">Excluir Passo</string>
@@ -30,6 +31,7 @@
     <string name="descricaoProduto">Descrição do Produto</string>
     <string name="descricaoUnidade">Descrição da Unidade</string>
     <string name="msgDescricaoEmBranco">Preencha a descrição.</string>
+    <string name="msgEscolhaReceita">Escolha uma receita.</string>
     <string name="msgListaIngredientesVazia">A receita tem que ter pelo menos um ingrediente.</string>
     <string name="msgListaPassosVazia">A receita tem que ter pelo menos um passo.</string>
     <string name="novo">Novo</string>

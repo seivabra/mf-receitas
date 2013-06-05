@@ -68,13 +68,13 @@ public class ListaReceitaFragment extends ListFragment {
 	public interface ReceitaListener{
 		void aoClicarNaReceita(Receita receita, int position);
 //		void aoSelecionarAlterarReceita(Receita receita);
-//		void aoExcluirReceita();
+		void aoExcluirReceita();
 	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
-		getActivity().getMenuInflater().inflate(R.menu.context_menu_alterar_excluir, menu);
+		getActivity().getMenuInflater().inflate(R.menu.context_menu_alterar_excluir_enviar, menu);
 		super.onCreateContextMenu(menu, v, menuInfo);
 	}
 	
@@ -84,19 +84,26 @@ public class ListaReceitaFragment extends ListFragment {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();  
 		final Receita receita = (Receita)getListView().getItemAtPosition(info.position);
 		
-//		switch (item.getItemId()) {  
-//        case R.id.opAlterar:
-//        	if (listener != null){
-//    			listener.aoSelecionarAlterarReceita(receita);
-//    		}
-//        	break;
-//        case R.id.opExcluir:
-//        	if (listener != null){
-//        		ExcluirReceita(receita);
-//    			listener.aoExcluirReceita();
-//    		}
-//        	break;
-//		}
+		switch (item.getItemId()) {  
+        case R.id.opAlterar:
+        	if (listener != null){
+    			//listener.aoSelecionarAlterarReceita(receita);
+    		}
+        	break;
+        case R.id.opExcluir:
+        	if (listener != null){
+        		ExcluirReceita(receita);
+    			listener.aoExcluirReceita();
+    		}
+        	break;
+        case R.id.opEnviar:
+	    	if (listener != null){
+	    		ReceitasAsyncTask async = new ReceitasAsyncTask(getActivity());
+	    		async.SalvarReceita(receita);
+    		}
+	    	break;
+
+		}
 		return super.onContextItemSelected(item);
 	}
 	

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListaCategoriaFragment extends ListFragment {
 	ArrayList<Categoria> categorias;
@@ -108,9 +109,13 @@ public class ListaCategoriaFragment extends ListFragment {
 		   //builder.setIcon(R.drawable.ic_tab_name_selected);
 		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
-					// fazer pesquisar se a categoria é usada em alguma receita
-					fachada.ExcluirCategoria(categoria);
-					ListarCategorias();
+					try {
+						fachada.ExcluirCategoria(categoria);
+						ListarCategorias();
+					} catch (Exception e) {
+						Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 					
 			});

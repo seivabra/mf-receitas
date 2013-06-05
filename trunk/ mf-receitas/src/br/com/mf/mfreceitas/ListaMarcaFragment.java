@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListaMarcaFragment extends ListFragment {
 	ArrayList<Marca> marcas;
@@ -106,9 +107,13 @@ public class ListaMarcaFragment extends ListFragment {
 		   //builder.setIcon(R.drawable.ic_tab_name_selected);
 		dialogDeletarMarca.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				// fazer pesquisar se a categoria é usada em alguma receita
-				fachada.ExcluirMarca(marca);
-				ListarMarcas();
+				try {
+					fachada.ExcluirMarca(marca);
+					ListarMarcas();
+				} catch (Exception e) {
+					Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+				
 			}
 				
 		});

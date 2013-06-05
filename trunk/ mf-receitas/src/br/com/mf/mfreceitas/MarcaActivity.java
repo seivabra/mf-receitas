@@ -5,6 +5,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 import br.com.mf.mfreceitas.DetalheMarcaFragment.DetalheMarcaListener;
+import br.com.mf.mfreceitas.ListaMarcaFragment.MarcaListener;
 import ClassesBasicas.Marca;
 import android.content.Context;
 import android.content.Intent;
@@ -53,44 +54,44 @@ public class MarcaActivity extends SherlockFragmentActivity implements DetalheMa
         }
         
         
-//        
-//        listaMarcaFragment.setMarcaListener(new MarcaListener() {
-//			
-//			@Override
-//			public void aoClicarNaMarca(Marca marca, int position) {
-//				DetalheMarcaFragment.habilitaCampos = false;
-//				marcaSelecionada = marca;
-//				if (mostraDetalhe()){
-//					CarregaFragmentDetalhe(marca);
-//				}else{
-//					Intent intent = new Intent(context, DetalheMarcaActivity.class);
-//					intent.putExtra("marca", marca);
-//					startActivity(intent);
-//				}
-//			}
-//
-//			@Override
-//			public void aoSelecionarAlterarMarca(Marca marca) {
-//				DetalheMarcaFragment.habilitaCampos = true;
-//				if (mostraDetalhe()){
-//					DetalheMarcaFragment.habilitaCampos = true;
-//					CarregaFragmentDetalhe(marca);
-//					InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//			        mgr.toggleSoftInput (InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-//				}else{
-//					Intent intent = new Intent(context, DetalheMarcaActivity.class);
-//					intent.putExtra("marca", marca);
-//					startActivity(intent);
-//				}
-//			}
-//
-//			@Override
-//			public void aoExcluirMarca() {
-//				if (mostraDetalhe()){
-//					//selecionar a primeira marca
-//				}
-//			}
-//		});
+        
+        listaMarcaFragment.setMarcaListener(new MarcaListener() {
+			
+			@Override
+			public void aoClicarNaMarca(Marca marca, int position) {
+				DetalheMarcaFragment.habilitaCampos = false;
+				marcaSelecionada = marca;
+				if (mostraDetalhe()){
+					CarregaFragmentDetalhe(marca);
+				}else{
+					Intent intent = new Intent(context, DetalheMarcaActivity.class);
+					intent.putExtra("marca", marca);
+					startActivity(intent);
+				}
+			}
+
+			@Override
+			public void aoSelecionarAlterarMarca(Marca marca) {
+				DetalheMarcaFragment.habilitaCampos = true;
+				if (mostraDetalhe()){
+					DetalheMarcaFragment.habilitaCampos = true;
+					CarregaFragmentDetalhe(marca);
+					InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+			        mgr.toggleSoftInput (InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+				}else{
+					Intent intent = new Intent(context, DetalheMarcaActivity.class);
+					intent.putExtra("marca", marca);
+					startActivity(intent);
+				}
+			}
+
+			@Override
+			public void aoExcluirMarca() {
+				if (mostraDetalhe()){
+					//selecionar a primeira marca
+				}
+			}
+		});
     }
     
     @Override

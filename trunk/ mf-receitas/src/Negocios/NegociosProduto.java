@@ -21,8 +21,11 @@ public class NegociosProduto {
 		return daoProduto.AlterarProduto(listaCompras);
 	}
 	
-	public int ExcluirProduto(Produto listaCompras){
-		return daoProduto.ExcluirProduto(listaCompras);
+	public int ExcluirProduto(Produto produto) throws Exception{
+		if (daoProduto.UsaEmAlgumaReceita(produto))
+			throw new Exception("Esse produto está sendo usado em uma receita.");
+		else
+			return daoProduto.ExcluirProduto(produto);
 	}
 	
 	public ArrayList<Produto> ListarProdutos(){

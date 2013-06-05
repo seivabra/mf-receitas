@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import ClassesBasicas.Categoria;
 import ClassesBasicas.Marca;
 
 public class DaoMarca {
@@ -110,6 +111,32 @@ public class DaoMarca {
 	    database.close(); 
 	    
 	    return achouMarca;
+	}
+	
+	public Boolean UsaEmAlgumaReceita(Marca	marca){
+		Boolean UsaEmReceita = false;  
+		
+		String[] columns = new String[]{"codMarca"};  
+	    String[] args = new String[]{String.valueOf(marca.getId())};  
+	  
+	    database = databaseHelper.getWritableDatabase();  
+	    Cursor cursor = database.query("itensReceita", columns,   
+	       "codMarca = ?", args, null, null, null);
+	   Marca marcaUsada = null;
+	   cursor.moveToFirst();  
+	    while(!cursor.isAfterLast()){  
+	    	marcaUsada = new Marca();  
+	    	marcaUsada.setId((int)cursor.getLong(0));
+	    	cursor.moveToNext();  
+	    }
+
+	    if (marcaUsada != null)
+	    	UsaEmReceita = true;
+	    
+	    cursor.close();  
+	    database.close(); 
+	    
+	    return UsaEmReceita;
 	}
 	
 	private Marca preencherMarca(Cursor cursor) {  

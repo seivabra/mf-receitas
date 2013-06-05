@@ -23,9 +23,12 @@ public class NegociosCategoria {
 		return daoCategoria.AlterarCategoria(categoria);
 	}
 	
-	public int ExcluirCategoria(Categoria categoria){
+	public int ExcluirCategoria(Categoria categoria) throws Exception{
 		//Verificar se a categoria está sendo usada em alguma receita
-		return daoCategoria.ExcluirCategoria(categoria);
+		if(daoCategoria.UsaEmAlgumaReceita(categoria))
+			throw new Exception("Essa categoria está sendo usada em uma receita.");
+		else
+			return daoCategoria.ExcluirCategoria(categoria);
 	}
 	
 	public ArrayList<Categoria> ListarCategorias(){

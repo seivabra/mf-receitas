@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import ClassesBasicas.Produto;
 import ClassesBasicas.Unidade;
 
 public class DaoUnidade {
@@ -110,6 +111,32 @@ public class DaoUnidade {
 	    database.close(); 
 	    
 	    return achouUnidade;
+	}
+	
+	public Boolean UsaEmAlgumaReceita(Unidade unidade){
+		Boolean UsaEmReceita = false;  
+		
+		String[] columns = new String[]{"codUnidade"};  
+	    String[] args = new String[]{String.valueOf(unidade.getId())};  
+	  
+	    database = databaseHelper.getWritableDatabase();  
+	    Cursor cursor = database.query("itensReceita", columns,   
+	       "codUnidade = ?", args, null, null, null);
+	    Unidade unidadeUsada = null;
+	   cursor.moveToFirst();  
+	    while(!cursor.isAfterLast()){  
+	    	unidadeUsada = new Unidade();
+	    	unidadeUsada.setId((int)cursor.getLong(0)); 
+	    	cursor.moveToNext();  
+	    }
+
+	    if (unidadeUsada != null)
+	    	UsaEmReceita = true;
+	    
+	    cursor.close();  
+	    database.close(); 
+	    
+	    return UsaEmReceita;
 	}
 	
 	private Unidade preencherUnidade(Cursor cursor) {  

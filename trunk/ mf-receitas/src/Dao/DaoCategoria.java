@@ -113,6 +113,31 @@ public class DaoCategoria {
 	    return achouCategoria;
 	}
 	
+	public Boolean UsaEmAlgumaReceita(Categoria categoria){
+		Boolean UsaEmReceita = false;  
+		
+		String[] columns = new String[]{"_id", "descricao"};  
+	    String[] args = new String[]{String.valueOf(categoria.getId())};  
+	  
+	    database = databaseHelper.getWritableDatabase();  
+	    Cursor cursor = database.query("receitas", columns,   
+	       "codCategoria = ?", args, null, null, "descricao");
+	   Categoria categoriaUsada = null;
+	   cursor.moveToFirst();  
+	    while(!cursor.isAfterLast()){  
+	    	categoriaUsada = preencherCategoria(cursor);  
+	    	cursor.moveToNext();  
+	    }
+
+	    if (categoriaUsada != null)
+	    	UsaEmReceita = true;
+	    
+	    cursor.close();  
+	    database.close(); 
+	    
+	    return UsaEmReceita;
+	}
+	
 	private Categoria preencherCategoria(Cursor cursor) {  
 		Categoria categoria = new Categoria();  
 		categoria.setId((int)cursor.getLong(0));   

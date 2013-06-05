@@ -50,7 +50,7 @@ public class Fachada {
 		return negociosCategoria.AlterarCategoria(categoria);
 	}
 	
-	public int ExcluirCategoria(Categoria categoria){
+	public int ExcluirCategoria(Categoria categoria) throws Exception{
 		return negociosCategoria.ExcluirCategoria(categoria);
 	}
 	
@@ -90,7 +90,7 @@ public class Fachada {
 		return negociosMarca.AlterarMarca(marca);
 	}
 	
-	public int ExcluirMarca(Marca marca){
+	public int ExcluirMarca(Marca marca) throws Exception{
 		return negociosMarca.ExcluirMarca(marca);
 	}
 	
@@ -110,8 +110,8 @@ public class Fachada {
 		return negociosProduto.AlterarProduto(listaCompras);
 	}
 	
-	public int ExcluirProduto(Produto listaCompras){
-		return negociosProduto.ExcluirProduto(listaCompras);
+	public int ExcluirProduto(Produto produto) throws Exception{
+		return negociosProduto.ExcluirProduto(produto);
 	}
 	
 	public ArrayList<Produto> ListarProdutos(){
@@ -126,12 +126,12 @@ public class Fachada {
 		return negociosReceita.InserirReceita(receita);
 	}
 	
-	public int AlterarReceita(Receita listaCompras){
-		return negociosReceita.AlterarReceita(listaCompras);
+	public int AlterarReceita(Receita receita){
+		return negociosReceita.AlterarReceita(receita);
 	}
 	
-	public int ExcluirReceita(Receita listaCompras){
-		return negociosReceita.ExcluirReceita(listaCompras);
+	public int ExcluirReceita(Receita receita){
+		return negociosReceita.ExcluirReceita(receita);
 	}
 	
 	public ArrayList<Receita> ListarReceitas(){
@@ -150,7 +150,7 @@ public class Fachada {
 		return negociosUnidade.AlterarUnidade(unidade);
 	}
 	
-	public int ExcluirUnidade(Unidade unidade){
+	public int ExcluirUnidade(Unidade unidade) throws Exception{
 		return negociosUnidade.ExcluirUnidade(unidade);
 	}
 	

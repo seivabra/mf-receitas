@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
 public class ReceitaActivity extends SherlockFragmentActivity{
 	private ListaReceitaFragment listaReceitaFragment;
@@ -76,6 +77,16 @@ public class ReceitaActivity extends SherlockFragmentActivity{
 					Intent intent = new Intent(context, DetalheReceitaActivity.class);
 					intent.putExtra("receita", receita);
 					startActivity(intent);
+				}
+			}
+
+			@Override
+			public void aoExcluirReceita() {
+				if (mostraDetalhe()){
+					Receita receita = new Receita();
+					receita.setId(0);
+					CarregaFragmentDetalhe(receita);
+				
 				}
 			}
 		});
@@ -150,19 +161,27 @@ public class ReceitaActivity extends SherlockFragmentActivity{
     	if (item.getItemId() == R.id.act_Novo)
     		startActivity(intent);
 		else if (item.getItemId() == R.id.act_Alterar){
-			intent.putExtra("receita", receitaSelecionada);
-			startActivity(intent);
+			if (receitaSelecionada != null){
+				intent.putExtra("receita", receitaSelecionada);
+				startActivity(intent);
+			}else{
+				Toast.makeText(getBaseContext(), R.string.msgEscolhaReceita, Toast.LENGTH_SHORT).show();
+			}
 		}	
     	else if (item.getItemId() == R.id.act_Excluir){
+    		if (receitaSelecionada != null)
+    			listaReceitaFragment.ExcluirReceita(receitaSelecionada);
+    		else
+    			Toast.makeText(getBaseContext(), R.string.msgEscolhaReceita, Toast.LENGTH_SHORT).show();
     	}
     	return super.onMenuItemSelected(featureId, item);
     }
-//
-//	@Override
-//	protected void onRestart() {
-//		super.onRestart();
-//		listaReceitaFragment.ListarReceitas();
-//	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		listaReceitaFragment.ListarReceitas();
+	}
 
 	
 }
