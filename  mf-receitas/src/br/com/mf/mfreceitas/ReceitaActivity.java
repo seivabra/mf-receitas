@@ -1,6 +1,8 @@
 package br.com.mf.mfreceitas;
 
+//import br.com.mf.mfreceitas.ListaReceitaFragment.ReceitaListener;
 import br.com.mf.mfreceitas.ListaReceitaFragment.ReceitaListener;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -38,32 +40,43 @@ public class ReceitaActivity extends SherlockFragmentActivity{
         setContentView(R.layout.receita);
         fm = getSupportFragmentManager();
         listaReceitaFragment = (ListaReceitaFragment)fm.findFragmentById(R.id.fragmentListaReceitas);
-        //listaReceitaFragment.setReceitaListener(this);
-    
+       
         listaReceitaFragment.setReceitaListener(new ReceitaListener() {
 			
+//			@Override
+//			public void aoSelecionarAlterarReceita(Receita receita) {
+//				if (mostraDetalhe()){
+//					CarregaFragmentDetalhe(receita);
+//				}else{
+//					Intent intent = new Intent(context, DetalheReceitaActivity.class);
+//					intent.putExtra("receita", receita);
+//					startActivity(intent);
+//				}
+//				
+//			}
+//			
+//			@Override
+//			public void aoExcluirReceita() {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//			@Override
+//			public void aoClicarNaReceita(Receita receita, int position) {
+//				// TODO Auto-generated method stub
+//				
+//			}
+
 			@Override
-			public void aoSelecionarAlterarReceita(Receita receita) {
+			public void aoClicarNaReceita(Receita receita, int position) {
 				if (mostraDetalhe()){
 					CarregaFragmentDetalhe(receita);
+					receitaSelecionada = receita;
 				}else{
 					Intent intent = new Intent(context, DetalheReceitaActivity.class);
 					intent.putExtra("receita", receita);
 					startActivity(intent);
 				}
-				
-			}
-			
-			@Override
-			public void aoExcluirReceita() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void aoClicarNaReceita(Receita receita, int position) {
-				// TODO Auto-generated method stub
-				
 			}
 		});
         
@@ -137,17 +150,19 @@ public class ReceitaActivity extends SherlockFragmentActivity{
     	if (item.getItemId() == R.id.act_Novo)
     		startActivity(intent);
 		else if (item.getItemId() == R.id.act_Alterar){
+			intent.putExtra("receita", receitaSelecionada);
+			startActivity(intent);
 		}	
     	else if (item.getItemId() == R.id.act_Excluir){
     	}
     	return super.onMenuItemSelected(featureId, item);
     }
-
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-		listaReceitaFragment.ListarReceitas();
-	}
+//
+//	@Override
+//	protected void onRestart() {
+//		super.onRestart();
+//		listaReceitaFragment.ListarReceitas();
+//	}
 
 	
 }

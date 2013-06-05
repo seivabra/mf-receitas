@@ -14,7 +14,7 @@ public class DaoCategoria {
 	//private String scriptCreate = "create table categorias (_id integer primary key autoincrement, descricao text not null);";
 	private ContentValues contentValues;
 	public DaoCategoria(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 7/*, scriptCreate*/);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1/*, scriptCreate*/);
 	}
 	
 	public long InserirCategoria(Categoria categoria){

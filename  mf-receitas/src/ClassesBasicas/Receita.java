@@ -17,6 +17,7 @@ public class Receita implements Serializable{
 	String medidaTempoForno;
 	String medidaTempoCongelador;
 	String medidaTempoPreparo;
+	String caminhoImagem;
 	Categoria categoria;
 	public Categoria getCategoria() {
 		return categoria;
@@ -30,11 +31,12 @@ public class Receita implements Serializable{
 		itens = new ArrayList<Item>();
 	}
 	
+	
 	public Receita(int id, String descricao, ArrayList<Item> itens,
 			int qtdPessoasServe, int tempoForno, int tempoCongelador,
 			int tempoPreparo, Double custoMedio, String modoPreparo,
 			String medidaTempoForno, String medidaTempoCongelador,
-			String medidaTempoPreparo, Categoria categoria) {
+			String medidaTempoPreparo, String caminhoImagem, Categoria categoria) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -48,6 +50,7 @@ public class Receita implements Serializable{
 		this.medidaTempoForno = medidaTempoForno;
 		this.medidaTempoCongelador = medidaTempoCongelador;
 		this.medidaTempoPreparo = medidaTempoPreparo;
+		this.caminhoImagem = caminhoImagem;
 		this.categoria = categoria;
 	}
 	public int getId() {
@@ -121,6 +124,12 @@ public class Receita implements Serializable{
 	}
 	public void setMedidaTempoPreparo(String medidaTempoPreparo) {
 		this.medidaTempoPreparo = medidaTempoPreparo;
+	}
+	public String getCaminhoImagem() {
+		return caminhoImagem;
+	}
+	public void setCaminhoImagem(String caminhoImagem) {
+		this.caminhoImagem = caminhoImagem;
 	}
 	@Override
 	public String toString() {

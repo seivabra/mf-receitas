@@ -15,7 +15,7 @@ public class DaoMarca {
 	//private String scriptCreate = "create table marcas (_id integer primary key autoincrement, descricao text not null);";
 	private ContentValues contentValues;
 	public DaoMarca(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 7/*, scriptCreate*/);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1/*, scriptCreate*/);
 	}
 	
 	public long InserirMarca(Marca marca){

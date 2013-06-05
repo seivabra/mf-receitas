@@ -19,12 +19,13 @@ public class DaoReceita {
 	//private String scriptCreate = "create table categorias (_id integer primary key autoincrement, descricao text not null);";
 	private ContentValues contentValues;
 	public DaoReceita(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 7/*, scriptCreate*/);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1/*, scriptCreate*/);
 	}
 	
 	public long InserirReceita(Receita receita){
 		contentValues = new ContentValues();  
 		contentValues.put("descricao", receita.getDescricao());
+		contentValues.put("caminhoImagem", receita.getCaminhoImagem());
 		if (receita.getTempoForno() > 0){
 			contentValues.put("tempoForno", receita.getTempoForno());
 			contentValues.put("medidaTempoForno", receita.getMedidaTempoForno());

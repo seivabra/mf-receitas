@@ -1,7 +1,6 @@
 package br.com.mf.mfreceitas;
 
 import java.util.ArrayList;
-
 import ClassesBasicas.Receita;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -37,39 +36,39 @@ public class ListaReceitaFragment extends ListFragment {
 			listener.aoClicarNaReceita(receitas.get(position), position);
 		}
 	}
-
-	public Receita PrimeiraReceitaLista(){
-		Receita primeiraReceita = null;
-		if ((receitas != null) && (receitas.size() > 0))
-			 primeiraReceita = receitas.get(0);
-		
-		return primeiraReceita;
-	}
-	
-	public Receita achaReceitaPeloCodigo(Receita receita){
-		//É mais rápido varrer um for ou procurar no banco pelo código?
-		if (receita.getId() == 0){
-			if(receitas.size() > 0)
-				receita = receitas.get(0);
-		}else{
-			for (int i = 0; i < receitas.size(); i++) {
-				if (receitas.get(i).getId() == receita.getId()){
-					receita = receitas.get(i);
-					break;
-				}
-			}
-		}
-		return receita;
-	}
-	
+//
+//	public Receita PrimeiraReceitaLista(){
+//		Receita primeiraReceita = null;
+//		if ((receitas != null) && (receitas.size() > 0))
+//			 primeiraReceita = receitas.get(0);
+//		
+//		return primeiraReceita;
+//	}
+//	
+//	public Receita achaReceitaPeloCodigo(Receita receita){
+//		//É mais rápido varrer um for ou procurar no banco pelo código?
+//		if (receita.getId() == 0){
+//			if(receitas.size() > 0)
+//				receita = receitas.get(0);
+//		}else{
+//			for (int i = 0; i < receitas.size(); i++) {
+//				if (receitas.get(i).getId() == receita.getId()){
+//					receita = receitas.get(i);
+//					break;
+//				}
+//			}
+//		}
+//		return receita;
+//	}
+//	
 	public void setReceitaListener(ReceitaListener listener) {
 		this.listener = listener;
 	}
 	
 	public interface ReceitaListener{
 		void aoClicarNaReceita(Receita receita, int position);
-		void aoSelecionarAlterarReceita(Receita receita);
-		void aoExcluirReceita();
+//		void aoSelecionarAlterarReceita(Receita receita);
+//		void aoExcluirReceita();
 	}
 	
 	@Override
@@ -85,19 +84,19 @@ public class ListaReceitaFragment extends ListFragment {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();  
 		final Receita receita = (Receita)getListView().getItemAtPosition(info.position);
 		
-		switch (item.getItemId()) {  
-        case R.id.opAlterar:
-        	if (listener != null){
-    			listener.aoSelecionarAlterarReceita(receita);
-    		}
-        	break;
-        case R.id.opExcluir:
-        	if (listener != null){
-        		ExcluirReceita(receita);
-    			listener.aoExcluirReceita();
-    		}
-        	break;
-		}
+//		switch (item.getItemId()) {  
+//        case R.id.opAlterar:
+//        	if (listener != null){
+//    			listener.aoSelecionarAlterarReceita(receita);
+//    		}
+//        	break;
+//        case R.id.opExcluir:
+//        	if (listener != null){
+//        		ExcluirReceita(receita);
+//    			listener.aoExcluirReceita();
+//    		}
+//        	break;
+//		}
 		return super.onContextItemSelected(item);
 	}
 	
@@ -117,11 +116,12 @@ public class ListaReceitaFragment extends ListFragment {
 		    dialogDeletarItem.setNegativeButton("Não", null);
 		    dialogDeletarItem.show();
 	}
-	
+//	
 	public void ListarReceitas(){
 		//Quando ta voltando sem nada ta voltando null e dando erro
 		receitas = fachada.ListarReceitas();
-		setListAdapter(new ArrayAdapter<Receita>(getActivity(), android.R.layout.simple_list_item_1, receitas));
+		//setListAdapter(new ArrayAdapter<Receita>(getActivity(), android.R.layout.simple_list_item_1, receitas));
+		setListAdapter(new AdapterReceita(getActivity(),receitas));
 	}
 	
 	

@@ -30,6 +30,6 @@ public class Main extends Activity{
 	}
 	
 	public void btnMntReceitaClick(View v){
-		startActivity(new Intent(this, IncluirAlterarReceitaActivity.class));
+		startActivity(new Intent(this, ReceitaActivity.class));
 	}
 }

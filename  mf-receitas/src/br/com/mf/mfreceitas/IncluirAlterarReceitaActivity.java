@@ -1,6 +1,10 @@
 package br.com.mf.mfreceitas;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +18,9 @@ import ClassesBasicas.Unidade;
 import Excecoes.SemDescricaoException;
 import Excecoes.SemIngredientesException;
 import Excecoes.SemPassosException;
+import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -24,8 +30,10 @@ import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -70,6 +78,7 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	ArrayList<String> listaPassos = new ArrayList<String>();
 	ArrayList<String> listaTempo = new ArrayList<String>();
 	String arquivo;
+	Receita receita;
 	
 	private Uri fileUri;
 	
@@ -136,6 +145,7 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 		receita.setMedidaTempoCongelador((String)spinnerCongelador.getSelectedItem());
 		receita.setMedidaTempoPreparo((String)spinnerPreparo.getSelectedItem());
 		receita.setItens(listaItens);
+		receita.setCaminhoImagem(arquivo);
 		
 		for (int i = 0; i < listaPassos.size(); i++) {
 			passos = passos + listaPassos.get(i);
@@ -176,6 +186,58 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 			retorno = Ndefault;
 		}
 		return retorno;
+	}
+	
+	public static void copy(String fOrigem, String fDestino) throws IOException { 
+
+		FileChannel fcOrigem = new FileInputStream(fOrigem).getChannel(); 
+		FileChannel fcDestino = new FileOutputStream(fDestino).getChannel(); 
+
+		fcOrigem.transferTo(0, fcOrigem.size(), fcDestino); 
+
+		fcDestino.close(); 
+		fcOrigem.close(); 
+
+	}
+	
+	private void showOptions(){
+		final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.opcoescarregarimagem);
+        dialog.setTitle("Escolher uma ação");
+        Button btnTirarFoto = (Button) dialog.findViewById(R.id.btnTirarFoto);
+        Button btnAbrirGaleria = (Button) dialog.findViewById(R.id.btnAbrirGaleria);
+        
+        
+        btnTirarFoto.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+    				
+					Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+					arquivo = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
+					File file = new File(arquivo);
+					Uri outputFileUri = Uri.fromFile(file);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+					startActivityForResult(intent, 1);
+				}else
+					Toast.makeText(getBaseContext(), "O cartão de memória não está acessível", Toast.LENGTH_SHORT).show();
+            	
+            	dialog.dismiss();
+            }
+        });
+        
+        btnAbrirGaleria.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),2);
+                dialog.dismiss();
+			}
+		});
+        
+        
+    dialog.show();
 	}
 	
 	public void btnDiminuirClick(View v) {
@@ -233,77 +295,9 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	}
 	
 	public void btnIncluirAlterarImagemClick(View v) {
-		//Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		//fileUri = getOutputMediaFileUri(); 
-//		File image = new  File("/sdcard/image.jpg");
-//		intent.putExtra(MediaStore.EXTRA_OUTPUT, image);
-//		startActivityForResult(intent, 1);
-		
-//		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//		String arquivo = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
-//		
-//		
-//		
-//		File file = new File(arquivo);
-		
-//		if (! file.exists()){
-//	        if (! file.mkdirs()){
-//	           // Log.d("MyCameraApp", "failed to create directory");
-//	            return null;
-//	        }
-//	    }
-		
-//		Uri outputFileUri = Uri.fromFile(file);
-//		intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-//		startActivityForResult(intent, 1);
-		
-		if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-			
-			Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-			arquivo = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
-			File file = new File(arquivo);
-			Uri outputFileUri = Uri.fromFile(file);
-			intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
-			startActivityForResult(intent, 1);
-		}else
-			Toast.makeText(getBaseContext(), "O cartão de memória não está acessível", Toast.LENGTH_SHORT).show();
-		
+			showOptions();
 	}
 	
-//	private static Uri getOutputMediaFileUri(/*int type*/){
-//	      //return Uri.fromFile(getOutputMediaFile(type));
-//		return Uri.fromFile(getOutputMediaFile());
-//	}
-//
-//	/** Create a File for saving an image or video */
-//	private static File getOutputMediaFile(/*int type*/){
-//	    // To be safe, you should check that the SDCard is mounted
-//	    // using Environment.getExternalStorageState() before doing this.
-//
-//	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-//	              Environment.DIRECTORY_PICTURES), "MFReceitas");
-//	    // This location works best if you want the created images to be shared
-//	    // between applications and persist after your app has been uninstalled.
-//
-//	    // Create the storage directory if it does not exist
-//	    
-//
-//	    // Create a media file name
-//	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//	    File mediaFile;
-//	    //if (type == MEDIA_TYPE_IMAGE){
-//	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-//	        "IMG_"+ timeStamp + ".jpg");
-////	    } else if(type == MEDIA_TYPE_VIDEO) {
-////	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-////	        "VID_"+ timeStamp + ".mp4");
-////	    } else {
-////	        return null;
-////	    }
-//
-//	    return mediaFile;
-//	}
-//	
 	public void btnAdicionarProdutoClick(View v){
 		Item item = new Item();
 		item.setProduto(adapterProduto.getItem(spinnerProduto.getSelectedItemPosition()));
@@ -368,6 +362,12 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 		registerForContextMenu(listItens);
 		registerForContextMenu(listPassos); 
 		
+		receita = (Receita)getIntent().getSerializableExtra("receita");
+		if (receita != null){
+			Bitmap yourSelectedImage = BitmapFactory.decodeFile(receita.getCaminhoImagem());  
+            
+            imgReceita.setImageBitmap(yourSelectedImage);
+		}
 		listItens.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -389,7 +389,18 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if ((requestCode == 1) && (resultCode == RESULT_OK)){
+//		if ((requestCode == 1) && (resultCode == RESULT_OK)){
+//			if(data != null){
+//				Bundle bundle = data.getExtras();
+//				if(bundle != null){
+//					Bitmap bitmap = (Bitmap)bundle.get("data");
+//					imgReceita.setImageBitmap(bitmap);
+//					//imgImagem.setImageBitmap(arquivo);
+//				}
+//			}
+//	    }
+		
+		if((requestCode == 1) && (resultCode == RESULT_OK)){
 			if(data != null){
 				Bundle bundle = data.getExtras();
 				if(bundle != null){
@@ -398,7 +409,32 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 					//imgImagem.setImageBitmap(arquivo);
 				}
 			}
-	    }
+		}else if((requestCode == 2) && (resultCode == RESULT_OK)){
+
+            
+            Uri selectedImage = data.getData();  
+            String[] filePathColumn = {MediaStore.Images.Media.DATA };  
+            
+            Cursor cursor = getContentResolver().query(  
+              selectedImage, filePathColumn, null, null, null);  
+            cursor.moveToFirst();  
+            
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);  
+            String filePath = cursor.getString(columnIndex);   
+            cursor.close();  
+            arquivo = filePath;
+            Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);  
+            
+            imgReceita.setImageBitmap(yourSelectedImage);
+            
+            String origem = filePath;
+            String destino = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
+            try {
+				copy(origem, destino);
+			} catch (IOException e) {
+				Toast.makeText(getBaseContext(), "Erro ao tentar salvar a imagem no local de destiono.", Toast.LENGTH_SHORT).show();
+			}
+       }
 	}
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
