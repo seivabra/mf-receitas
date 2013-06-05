@@ -26,11 +26,16 @@ public class DetalheReceitaFragment extends Fragment{
 	public void PreencheInformacoes(Receita receita){
 		lblDescricao.setText(receita.getDescricao());
 		lblCategoria.setText(receita.getCategoria().getDescricao());
-		lblQtdPessoas.setText(String.valueOf(receita.getQtdPessoasServe()));
-		lblTempoPreparo.setText(String.valueOf(receita.getTempoPreparo()) + receita.getMedidaTempoPreparo());
-		lblTempoForno.setText(String.valueOf(receita.getTempoForno()) + receita.getMedidaTempoForno());
-		lblTempoCongelador.setText(String.valueOf(receita.getTempoCongelador()) + receita.getMedidaTempoCongelador());
-		lblCustoMedio.setText(String.valueOf(receita.getCustoMedio()));
+		if (receita.getQtdPessoasServe() > 0)
+			lblQtdPessoas.setText(String.valueOf(receita.getQtdPessoasServe()));
+		if (receita.getTempoPreparo() > 0)
+			lblTempoPreparo.setText(String.valueOf(receita.getTempoPreparo()) + receita.getMedidaTempoPreparo());
+		if (receita.getTempoForno() > 0)
+			lblTempoForno.setText(String.valueOf(receita.getTempoForno()) + receita.getMedidaTempoForno());
+		if (receita.getTempoCongelador() > 0)
+			lblTempoCongelador.setText(String.valueOf(receita.getTempoCongelador()) + receita.getMedidaTempoCongelador());
+		if (receita.getCustoMedio() > 0.0)
+			lblCustoMedio.setText(String.valueOf(receita.getCustoMedio()));
 		
 //		LinearLayout controls = (android.widget.LinearLayout)getActivity().findViewById(R.id.linearIngedientes);
 //		for (int i = 0; i < receita.getItens().size(); i++) {
@@ -69,10 +74,11 @@ public class DetalheReceitaFragment extends Fragment{
 		lblTempoCongelador = (TextView)layout.findViewById(R.id.lblTempoCongelador);
 		lblCustoMedio = (TextView)layout.findViewById(R.id.lblCustoMedio);
 		
+		if (receita.getId() > 0){
+				
+			PreencheInformacoes(receita);
 		
-		PreencheInformacoes(receita);
-		
-		
+		}
 		return layout;
 	}
 }

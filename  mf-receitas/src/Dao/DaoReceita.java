@@ -26,6 +26,7 @@ public class DaoReceita {
 		contentValues = new ContentValues();  
 		contentValues.put("descricao", receita.getDescricao());
 		contentValues.put("caminhoImagem", receita.getCaminhoImagem());
+		contentValues.put("modoPreparo", receita.getModoPreparo());
 		if (receita.getTempoForno() > 0){
 			contentValues.put("tempoForno", receita.getTempoForno());
 			contentValues.put("medidaTempoForno", receita.getMedidaTempoForno());
@@ -68,11 +69,84 @@ public class DaoReceita {
 	}
 	
 	public int AlterarReceita(Receita receita){
-		return 0;
+		contentValues = new ContentValues();  
+
+
+		contentValues.put("descricao", receita.getDescricao());
+		if (receita.getCaminhoImagem().equals(""))
+			contentValues.putNull("caminhoImagem");
+		else
+			contentValues.put("caminhoImagem", receita.getCaminhoImagem());
+		contentValues.put("modoPreparo", receita.getModoPreparo());
+		if (receita.getTempoForno() > 0){
+			contentValues.put("tempoForno", receita.getTempoForno());
+			contentValues.put("medidaTempoForno", receita.getMedidaTempoForno());
+		}else{
+			contentValues.putNull("tempoForno");
+			contentValues.putNull("medidaTempoForno");
+		}
+		if (receita.getTempoCongelador() > 0){
+			contentValues.put("tempoCongelador", receita.getTempoCongelador());
+			contentValues.put("medidaTempoCongelador", receita.getMedidaTempoCongelador());
+		}else{
+			contentValues.putNull("tempoCongelador");
+			contentValues.putNull("medidaTempoCongelador");
+		}
+		if (receita.getTempoPreparo() > 0){
+			contentValues.put("tempoPreparo", receita.getTempoPreparo());
+			contentValues.put("medidaTempoPreparo", receita.getMedidaTempoPreparo());
+		}else{
+			contentValues.putNull("tempoPreparo");
+			contentValues.putNull("medidaTempoPreparo");
+		}
+		if (receita.getCategoria().getId() > 0)
+			contentValues.put("codCategoria", receita.getCategoria().getId());
+		if (receita.getQtdPessoasServe() > 0)
+			contentValues.put("qtdPessoasServe", receita.getQtdPessoasServe());
+		else
+			contentValues.putNull("qtdPessoasServe");
+		if (receita.getCustoMedio() > 0)
+			contentValues.put("custoMedio", receita.getCustoMedio());
+		else
+			contentValues.putNull("custoMedio");
+		database = databaseHelper.getWritableDatabase();  
+		int rows = database.update("receitas", contentValues, "_id = ?",   
+			       new String[]{ String.valueOf(receita.getId())});  
+		
+		//database = databaseHelper.getWritableDatabase();  
+		database.delete("itensReceita", "codReceita = ?",   
+			      new String[]{ String.valueOf(receita.getId()) }); 
+	    
+	    for (int i = 0; i < receita.getItens().size(); i++) {
+	    	contentValues = new ContentValues();
+		    contentValues.put("codReceita", receita.getId());
+		    contentValues.put("codProduto", receita.getItens().get(i).getProduto().getId());
+		    contentValues.put("codUnidade", receita.getItens().get(i).getUnidade().getId());
+		    contentValues.put("quantidade", receita.getItens().get(i).getQuantidade());
+			if (receita.getItens().get(i).getMarca().getId() > 0)
+				contentValues.put("codMarca", receita.getItens().get(i).getMarca().getId());
+			if (receita.getItens().get(i).getPreco() > 0)
+				contentValues.put("preco", receita.getItens().get(i).getPreco());
+			database = databaseHelper.getWritableDatabase();  
+		    database.insert("itensReceita", null, contentValues);
+		}
+	    
+		
+		
+//		database = databaseHelper.getWritableDatabase();  
+//	    int rows = database.update("receitas", contentValues, "_id = ?",   
+//	       new String[]{ String.valueOf(receita.getId())});  
+	    database.close();  
+	    return rows;
 	}
 	
 	public int ExcluirReceita(Receita receita){
-		return 0;
+		database = databaseHelper.getWritableDatabase();  
+	    int rows = database.delete("receitas", "_id = ?",   
+	      new String[]{ String.valueOf(receita.getId()) }); 
+	    database.delete("itensReceita", "codReceita = ?",   
+			      new String[]{ String.valueOf(receita.getId()) }); 
+	    return rows; 
 	}
 	
 	public ArrayList<Receita> ListarReceitas(){
@@ -83,7 +157,7 @@ public class DaoReceita {
 
 	    Cursor cursor = database.rawQuery("select r._id id, r.descricao, r.qtdPessoasServe, r.tempoForno, r.tempoCongelador, r.tempoPreparo, " +
 	    								  "r.custoMedio, r.modoPreparo, r.medidaTempoForno, r.medidaTempoCongelador, r.medidaTempoPreparo, c._id, c.descricao, "+
-	    								  "p._id, p.descricao, u._id, u.descricao, m._id, m.descricao, i.quantidade, i.preco from receitas r " +
+	    								  "p._id, p.descricao, u._id, u.descricao, m._id, m.descricao, i.quantidade, i.preco, r.caminhoImagem from receitas r " +
 	    								  "left join categorias c on c._id = r.codCategoria "+
 	    								  "left join itensReceita i on i.codReceita = id " +
 	    								  "left join produtos p on p._id = i.codProduto " +
@@ -130,6 +204,7 @@ public class DaoReceita {
 			receita.setMedidaTempoCongelador(cursor.getString(9));
 			receita.setMedidaTempoPreparo(cursor.getString(10));
 			receita.setCategoria(new Categoria((int)cursor.getLong(11), cursor.getString(12)));
+			receita.setCaminhoImagem(cursor.getString(21));
 			receita.setItens(new ArrayList<Item>());
 		}
 		receita.getItens().add(item); 

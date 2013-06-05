@@ -21,8 +21,11 @@ public class NegociosUnidade {
 		return daoUnidade.AlterarUnidade(unidade);
 	}
 	
-	public int ExcluirUnidade(Unidade unidade){
-		return daoUnidade.ExcluirUnidade(unidade);
+	public int ExcluirUnidade(Unidade unidade) throws Exception{
+		if (daoUnidade.UsaEmAlgumaReceita(unidade))
+			throw new Exception("Essa unidade está sendo usada em uma receita.");
+		else
+			return daoUnidade.ExcluirUnidade(unidade);
 	}
 	
 	public ArrayList<Unidade> ListarUnidades(){

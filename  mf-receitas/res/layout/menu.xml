@@ -3,46 +3,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="200dp">
 
-    <Button
-        android:id="@+id/btnCategoria"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="btnMntCategoriaClick"
-        android:background="@drawable/shapebutton"
-        android:text="Categoria" />
+        android:layout_weight="1" >
 
-    <Button
-        android:id="@+id/btnMarca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shapebutton"
-        android:onClick="btnMntMarcaClick"
-        android:text="Marca" />
+        <Button
+            android:id="@+id/btnCategoria"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shapebutton"
+            android:onClick="btnMntCategoriaClick"
+            android:text="Categoria" />
 
-    <Button
-        android:id="@+id/btnProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnMntProdutoClick"
-        android:background="@drawable/shapebutton"
-        android:text="Produto" />
+        <Button
+            android:id="@+id/btnMarca"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/shapebutton"
+            android:onClick="btnMntMarcaClick"
+            android:text="Marca" />
 
-    <Button
-        android:id="@+id/btnUnidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnMntUnidadeClick"
-        android:background="@drawable/shapebutton"
-        android:text="Unidade" />
+        <Button
+            android:id="@+id/btnProduto"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/shapebutton"
+            android:onClick="btnMntProdutoClick"
+            android:text="Produto" />
 
-    <Button
-        android:id="@+id/btnReceita"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btnMntReceitaClick"
-        android:background="@drawable/shapebutton"
-        android:text="Receita" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="20dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnUnidade"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shapebutton"
+            android:onClick="btnMntUnidadeClick"
+            android:text="Unidade" />
+
+        <Button
+            android:id="@+id/btnReceita"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/shapebutton"
+            android:onClick="btnMntReceitaClick"
+            android:text="Receita" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,9 +1,12 @@
 package br.com.mf.mfreceitas;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -133,7 +136,7 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 	
 	public void SalvarReceita() {
 		String passos = "";
-		Receita receita = new Receita();
+		//Receita receita = new Receita();
 		receita.setDescricao(edtDescricao.getText().toString().trim());
 		receita.setCategoria(adapterCategoria.getItem(spinnerCategoria.getSelectedItemPosition()));
 		receita.setQtdPessoasServe(StrToIntDef(edtQtdPessoas.getText().toString(), 0));
@@ -156,7 +159,10 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 		receita.setModoPreparo(passos);
 		
 		try {
-			fachada.InserirReceita(receita);
+			if (receita.getId() == 0){
+				fachada.InserirReceita(receita);
+			}else
+				fachada.AlterarReceita(receita);
 			LimparReceita();
 			finish();
 		} catch (SemDescricaoException e) {
@@ -365,8 +371,55 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 		receita = (Receita)getIntent().getSerializableExtra("receita");
 		if (receita != null){
 			Bitmap yourSelectedImage = BitmapFactory.decodeFile(receita.getCaminhoImagem());  
-            
             imgReceita.setImageBitmap(yourSelectedImage);
+            
+//            edtDescricao.setText(receita.getDescricao());
+//            spinnerProduto ;
+//    		spinnerMarca;
+//    		spinnerUnidade;
+            
+    		
+            
+    		//spinnerCategoria ;
+    		edtDescricao.setText(receita.getDescricao());
+    		if (receita.getQtdPessoasServe() > 0)
+    			edtQtdPessoas.setText(String.valueOf(receita.getQtdPessoasServe()));
+    		if (receita.getTempoPreparo() > 0){
+	    		edtTempoPreparo.setText(String.valueOf(receita.getTempoPreparo()));
+	    		spinnerPreparo.setSelection(adapterTempo.getPosition(receita.getMedidaTempoPreparo()));
+    		}
+    		if (receita.getTempoForno() > 0){
+	    		edtTempoForno.setText(String.valueOf(receita.getTempoForno()));
+	    		spinnerForno.setSelection(adapterTempo.getPosition(receita.getMedidaTempoForno()));
+    		}
+    		if (receita.getTempoCongelador() > 0){
+	    		edtTempoCongelador.setText(String.valueOf(receita.getTempoCongelador()));
+	    		spinnerCongelador.setSelection(adapterTempo.getPosition(receita.getMedidaTempoCongelador()));
+    		}
+    		if (receita.getCustoMedio() > 0)
+    			edtCustoMedio.setText(String.valueOf(receita.getCustoMedio()));
+    		//edtPreco.setText(receita.getDescricao());
+    		//edtQuantidade.setText(receita.getDescricao());
+    		//edtPasso.setText(receita.getDescricao());
+    		for (int i = 0; i < receita.getItens().size(); i++) {
+				adapterItem.add(receita.getItens().get(i));
+			}
+    		listItens.setAdapter(adapterItem);
+    		String[] passos = receita.getModoPreparo().split("\\|");
+    		for (int i = 0; i < passos.length; i++) {
+				adapterPassos.add(passos[i]);
+			}
+    		listPassos.setAdapter(adapterPassos);
+    		
+    		int id = receita.getId();
+    		arquivo = receita.getCaminhoImagem();
+    		receita = new Receita();
+    		receita.setId(id);
+    		
+            
+		} else{
+			receita = new Receita();
+			receita.setId(0);
 		}
 		listItens.setOnItemClickListener(new OnItemClickListener() {
 
@@ -379,6 +432,20 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 				spinnerUnidade.setSelection(adapterUnidade.getPosition(item.getUnidade()));
 				edtQuantidade.setText(String.valueOf(item.getQuantidade()));
 				edtPreco.setText(String.valueOf(item.getPreco()));
+				
+				adapterItem.remove(item);
+				
+			}
+		});
+		
+		listPassos.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int index,
+					long arg3) {
+				String passo = adapterPassos.getItem(index);
+				edtPasso.setText(passo);
+				adapterPassos.remove(passo);
 				
 			}
 		});
@@ -429,6 +496,9 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
             
             String origem = filePath;
             String destino = Environment.getExternalStorageDirectory() + "/MFReceitas/" + System.currentTimeMillis() + ".jpg";
+            
+            
+            
             try {
 				copy(origem, destino);
 			} catch (IOException e) {
@@ -436,6 +506,10 @@ public class IncluirAlterarReceitaActivity extends SherlockActivity{
 			}
        }
 	}
+	
+	
+	
+	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		

@@ -22,8 +22,11 @@ public class NegociosMarca {
 		return daoMarca.AlterarMarca(marca);
 	}
 	
-	public int ExcluirMarca(Marca marca){
-		return daoMarca.ExcluirMarca(marca);
+	public int ExcluirMarca(Marca marca) throws Exception{
+		if (daoMarca.UsaEmAlgumaReceita(marca))
+			throw new Exception("Essa marca está sendo usada em uma receita.");
+		else
+			return daoMarca.ExcluirMarca(marca);
 	}
 	
 	public ArrayList<Marca> ListarMarcas(){

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListaProdutoFragment extends ListFragment {
 	ArrayList<Produto> produtos;
@@ -107,8 +108,13 @@ public class ListaProdutoFragment extends ListFragment {
 		    dialogDeletarItem.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					// fazer pesquisar se a produto é usada em alguma receita
-					fachada.ExcluirProduto(produto);
-					ListarProdutos();
+					try {
+						fachada.ExcluirProduto(produto);
+						ListarProdutos();
+					} catch (Exception e) {
+						Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+					}
+					
 				}
 					
 			});

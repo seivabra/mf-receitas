@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import ClassesBasicas.Categoria;
 import ClassesBasicas.Produto;
 
 public class DaoProduto {
@@ -111,6 +112,32 @@ Boolean achouProduto = false;
 	    database.close(); 
 	    
 	    return achouProduto;
+	}
+	
+	public Boolean UsaEmAlgumaReceita(Produto produto){
+		Boolean UsaEmReceita = false;  
+		
+		String[] columns = new String[]{"codProduto"};  
+	    String[] args = new String[]{String.valueOf(produto.getId())};  
+	  
+	    database = databaseHelper.getWritableDatabase();  
+	    Cursor cursor = database.query("itensReceita", columns,   
+	       "codProduto = ?", args, null, null, null);
+	    Produto produtoUsado = null;
+	   cursor.moveToFirst();  
+	    while(!cursor.isAfterLast()){  
+	    	produtoUsado = new Produto();
+	    	produtoUsado.setId((int)cursor.getLong(0)); 
+	    	cursor.moveToNext();  
+	    }
+
+	    if (produtoUsado != null)
+	    	UsaEmReceita = true;
+	    
+	    cursor.close();  
+	    database.close(); 
+	    
+	    return UsaEmReceita;
 	}
 	
 	private Produto preencherProduto(Cursor cursor) {  
