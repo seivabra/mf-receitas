@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
     android:orientation="vertical" >
 
     <Button
@@ -9,12 +10,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnMntCategoriaClick"
+        android:background="@drawable/shapebutton"
         android:text="Categoria" />
 
     <Button
         android:id="@+id/btnMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/shapebutton"
         android:onClick="btnMntMarcaClick"
         android:text="Marca" />
 
@@ -23,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnMntProdutoClick"
+        android:background="@drawable/shapebutton"
         android:text="Produto" />
 
     <Button
@@ -30,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnMntUnidadeClick"
+        android:background="@drawable/shapebutton"
         android:text="Unidade" />
 
     <Button
@@ -37,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnMntReceitaClick"
+        android:background="@drawable/shapebutton"
         android:text="Receita" />
 
 </LinearLayout>

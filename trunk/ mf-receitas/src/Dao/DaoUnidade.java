@@ -16,7 +16,7 @@ public class DaoUnidade {
 	private ContentValues contentValues;
 	
 	public DaoUnidade(Context context){
-		databaseHelper = new DatabaseHelper(context, "MfReceitas", 7/*, scriptCreate*/);
+		databaseHelper = new DatabaseHelper(context, "MfReceitas", 1/*, scriptCreate*/);
 	}
 	
 	public long InserirUnidade(Unidade unidade){

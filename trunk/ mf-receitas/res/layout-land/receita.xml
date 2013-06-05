@@ -3,22 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-            
-	
-	 <fragment
-	     android:id="@+id/fragment1"
-	     android:name="br.com.mf.mfreceitas.ListaReceitaFragment"
-	     android:layout_width="0dp"
-	     android:layout_height="match_parent"
-	     android:layout_weight="1" />
-	 
-	<FrameLayout
-	    android:id="@+id/fragmentDetalheReceitas"
-		android:layout_width="0dp"
-		android:layout_height="match_parent"
-		android:layout_weight="2" >
-	 </FrameLayout>
-	        
+    <fragment
+        android:id="@+id/fragmentListaReceitas"
+        android:name="br.com.mf.mfreceitas.ListaReceitaFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
-    
+    <FrameLayout
+        android:id="@+id/fragmentDetalheReceitas"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2" >
+    </FrameLayout>
+
 </LinearLayout>

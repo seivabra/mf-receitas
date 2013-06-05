@@ -17,8 +17,11 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
     
+    <color name="blue">#50009ACD</color>
+    <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#DDDDDD</color>
     <color name="green">#20B2AA</color>
+    <color name="transparente">#00000000</color>
 
 </resources>
