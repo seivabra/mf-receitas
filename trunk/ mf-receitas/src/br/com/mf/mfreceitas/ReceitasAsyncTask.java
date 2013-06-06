@@ -38,7 +38,7 @@ public class ReceitasAsyncTask extends AsyncTask<Receita, Void, Void> {
 	private ProgressDialog progressDialog;
 	private Context ctx;
 	
-	private final String SOAP_ADDRESS = "http://carsoft.no-ip.info//wsmfreceitas/MFReceitasWS.asmx";
+	private final String SOAP_ADDRESS = "http://10.0.2.2/MFReceitasWS.asmx";
 	private final String NAMESPACE = "http://tempuri.org/";
 	private final String METODOWS = "SalvarReceita";
 
@@ -72,14 +72,14 @@ public class ReceitasAsyncTask extends AsyncTask<Receita, Void, Void> {
 			
 		StringArraySerializer lReceita = new StringArraySerializer();
 		
-		try {
+		/*try {
 			String[] caminhoImg = receita.getCaminhoImagem().split("/");
 			String caminho = caminhoImg[caminhoImg.length - 2] + "/" + caminhoImg[caminhoImg.length-1];
-			byte[] teste = imageToByte(caminho);
+			String teste = imageToByte(caminho);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		}*/
 		
 		lReceita.addAll(Arrays.asList(String.valueOf(receita.getId()),String.valueOf(receita.getDescricao()),
 						String.valueOf(receita.getCategoria().getId()),String.valueOf(receita.getTempoPreparo()),
@@ -145,7 +145,7 @@ public class ReceitasAsyncTask extends AsyncTask<Receita, Void, Void> {
         @Override
         public void getPropertyInfo(int index, Hashtable arg1, PropertyInfo info) {
         	info.type = PropertyInfo.STRING_CLASS;
-            info.name = "string";	                
+            info.name = "string";
         }
 
         @Override

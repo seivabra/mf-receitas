@@ -99,7 +99,7 @@ public class ListaReceitaFragment extends ListFragment {
         case R.id.opEnviar:
 	    	if (listener != null){
 	    		ReceitasAsyncTask async = new ReceitasAsyncTask(getActivity());
-	    		async.SalvarReceita(receita);
+	    		async.execute(receita);
     		}
 	    	break;
 
