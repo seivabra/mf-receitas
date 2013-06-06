@@ -89,6 +89,21 @@ public class ReceitaActivity extends SherlockFragmentActivity{
 				
 				}
 			}
+
+//			@Override
+//			public void aoSelecionarAlterarReceita(Receita receita) {
+//				if (mostraDetalhe()){
+//					//DetalheReceitaFragment.habilitaCampos = true;
+//					CarregaFragmentDetalhe(receita);
+//					//InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//			        //mgr.toggleSoftInput (InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+//				}else{
+//					Intent intent = new Intent(context, DetalheReceitaActivity.class);
+//					intent.putExtra("receita", receita);
+//					startActivity(intent);
+//				}
+//				
+//			}
 		});
         
         //selecionar a primeira receita
@@ -118,20 +133,7 @@ public class ReceitaActivity extends SherlockFragmentActivity{
 //				}
 //			}
 //
-//			@Override
-//			public void aoSelecionarAlterarReceita(Receita receita) {
-//				DetalheReceitaFragment.habilitaCampos = true;
-//				if (mostraDetalhe()){
-//					DetalheReceitaFragment.habilitaCampos = true;
-//					CarregaFragmentDetalhe(receita);
-//					InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//			        mgr.toggleSoftInput (InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-//				}else{
-//					Intent intent = new Intent(context, DetalheReceitaActivity.class);
-//					intent.putExtra("receita", receita);
-//					startActivity(intent);
-//				}
-//			}
+			
 //
 //			@Override
 //			public void aoExcluirReceita() {

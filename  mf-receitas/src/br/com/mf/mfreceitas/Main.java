@@ -11,8 +11,7 @@ public class Main extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.menu);
 		//this.deleteDatabase("MfReceitas");
-		
-		
+			
 	}
 	
 	public void btnMntCategoriaClick(View v){
